@@ -1,0 +1,75 @@
+from django.db import models
+from django .contrib.auth .models import User
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE, related_name='user_profile')
+    profile_pic = models.ImageField(upload_to='profile_pics', null=True)
+    bio = models.CharField(max_length=120)
+    mobile = models.CharField(max_length=12)
+    dob = models.DateField(null=True)
+
+    GENDER_CHOICES = (
+        ('male', 'male'),
+        ('female', 'female'),
+        ('other', 'other')
+    )
+
+    gender = models.CharField(max_length=12, choices=GENDER_CHOICES, default='male')
+    following = models.ManyToManyField(User, related_name='followings', blank=True)
+    followers = models.ManyToManyField(User, related_name='followers', blank=True)
+
+    @property
+    def get_followings(self):
+        return self.following.all()
+
+    @property
+    def get_following_count(self):
+        return self.get_followings.count()
+
+    @property
+    def get_followers(self):
+        return self.followers.all()
+
+    @property
+    def get_following_count(self):
+        return self.get_followers.count()
+
+    @property
+    def get_suggestions(self):
+        all_user_profiles = UserProfile.objects.all().exclude(user=self.user)
+        all_user_list = [userprofile.user for userprofile in all_user_profiles]
+        following_list = [user for user in self.get_followings]
+        invitations = [user for user in all_user_list if user not in following_list]
+        return invitations
+
+    def __str__(self):
+        return self.user.username
+
+
+class Blogs(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_blog')
+    title = models.CharField(max_length=120)
+    description = models.TextField()
+    image = models.ImageField(upload_to='blog_images',null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    liked_by = models.ManyToManyField(User)
+
+    @property
+    def get_liked_users(self):
+        return self.liked_by.all()
+
+    @property
+    def get_likes_count(self):
+        return self.get_liked_users.count()
+
+    def __str__(self):
+        return self.title
+
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blogs, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=250)
+    
+    def __str__(self):
+        return self.comment
