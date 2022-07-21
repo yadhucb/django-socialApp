@@ -1,0 +1,126 @@
+<div class="bg-white d-flex align-items-center fixed-to shadow" style="min-height: 56px; z-index: 5">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- search -->
+            <div class="col d-flex align-items-center">
+                <!-- logo -->
+                <span>Dev-Flow</span>
+                <!-- search bar -->
+                <div class="input-group ms-2" type="button">
+                    <!-- mobile -->
+                    <span class="input-group-prepend d-lg-none" id="searchMenu" data-bs-toggle="dropdown"
+                        aria-expanded="false" data-bs-auto-close="outside">
+                        <div class="input-group-text bg-gray border-0 rounded-circle" style="min-height: 40px">
+                            <i class="fas fa-search text-muted"></i>
+                        </div>
+                    </span>
+                    <ul class="dropdown-menu overflow-auto border-0 shadow p-3 " style="width: 400px;"
+                        aria-labelledby="searchMenu">
+                        <!-- search input -->
+                        <li class="dropdown-item" role="alert">
+                            <input type="text" class="rounded-pill border-0 bg-gray dropdown-item w-100"
+                                placeholder="Search" autofocus />
+                        </li>
+                    </ul>
+                    <!-- desktop -->
+                    <span class="input-group-prepend d-none d-lg-block">
+                        <div class="d-flex">
+                            <input style="min-height: 40px; min-width: 230px" type="text"
+                                class="input-group-text bg-gray border-0 rounded-pill" placeholder="Search" autofocus />
+                            <i class="fas fa-search me-2 text-muted fs-2 ms-3 pt-1"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <!-- nav -->
+            <div class=" col d-none d-xl-flex justify-content-center">
+                <!-- home -->
+                <div class="mx-4 nav__btn nav__btn-active">
+                    <button type="button" class="btn px-4">
+                        <i class="fas fa-home text-muted fs-4"></i>
+                    </button>
+                </div>
+                <!-- group -->
+                <div class="mx-4 nav__btn">
+                    <button type="button" class="btn px-4">
+                        <i type="button" class="position-relative fas fa-users text-muted fs-4">
+                            <span class="
+                      position-absolute
+                      top-0
+                      start-100
+                      translate-middle
+                      badge
+                      rounded-pill
+                      bg-danger
+                    " style="font-size: 0.5rem">
+                                1
+                                <span class="visually-hidden"></span>
+                            </span>
+                        </i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- menus -->
+            <div class="col d-flex align-items-center justify-content-end">
+                <!-- avatar -->
+                <div class="align-items-center justify-content-center d-none d-xl-flex">
+                    <img src="https://source.unsplash.com/collection/happy-people" class="rounded-circle me-2"
+                        alt="avatar" style="width: 38px; height: 38px; object-fit: cover" />
+                    <p class="m-0">{{request.user}}</p>
+                </div>
+
+                <div class="
+                rounded-circle
+                p-1
+                bg-gray
+                d-flex
+                align-items-center
+                justify-content-center
+                mx-2
+              " style="width: 38px; height: 38px" type="button" id="secondMenu" data-bs-toggle="dropdown"
+                    aria-expanded="false" data-bs-auto-close="outside">
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <!-- secondary menu dd -->
+
+                <ul class="dropdown-menu border-0 shadow p-3" aria-labelledby="secondMenu" style="width: 23em">
+                    <!-- avatar -->
+                    <li class="dropdown-item p-1 rounded d-flex" type="button">
+                        <img src="https://source.unsplash.com/collection/happy-people" alt="avatar"
+                            class="rounded-circle me-2" style="width: 45px; height: 45px; object-fit: cover" />
+                        <div>
+                            <p class="m-0">{{request.user}}</p>
+                            <p class="m-0 text-muted">See your profile</p>
+                        </div>
+                    </li>
+                    <hr />
+
+                    <!-- options -->
+
+                    <li class="dropdown-item p-1 my-3 rounded" type="button">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="{% url 'signout' %}" class="d-flex text-decoration-none text-dark">
+                                    <i class="fas fa-cog bg-gray p-2 rounded-circle"></i>
+                                    <div class="
+                          ms-3
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                          w-100
+                        ">
+                                        <p class="m-0">Signout</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!-- end -->
+            </div>
+        </div>
+    </div>
+</div>
