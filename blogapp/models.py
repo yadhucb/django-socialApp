@@ -68,7 +68,7 @@ class Blogs(models.Model):
 
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    blog = models.ForeignKey(Blogs, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blogs, on_delete=models.CASCADE, related_name='blog_comment')
     comment = models.CharField(max_length=250)
     
     def __str__(self):

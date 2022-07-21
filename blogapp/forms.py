@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from blogapp.models import User, Blogs
+from blogapp.models import User, Blogs, Comments
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
@@ -26,3 +26,13 @@ class BlogsForm(forms.ModelForm):
             'description',
             'image',
         ]
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comments
+        fields=[
+            'comment',
+        ]
+        widgets={
+            'comments':forms.TextInput()
+        }
