@@ -2,8 +2,9 @@ from urllib import request
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView
 from django.views import View
-from blogapp.models import User, Blogs, Comments
-from blogapp.forms import BlogsForm, CommentForm, UserRegistrationForm, LoginForm
+from blogapp.models import User, Blogs, Comments, UserProfile
+from blogapp.forms import (BlogsForm, CommentForm, UserRegistrationForm,
+ LoginForm, ProfileForm, ProfilePicForm)
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -25,15 +26,9 @@ class HomeView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         blogs = Blogs.objects.all().order_by('-updated_at')
-        try:
-            Blogs.objects.get(liked_by = self.request.user)
-            is_liked = True
-        except:
-            is_liked = False
         context['blogs'] = blogs
         comment_form = CommentForm()
         context['comment_form'] = comment_form
-        context['is_liked'] = is_liked
         return context
 
 def addcommentView(request,*args,**kwargs):
@@ -89,3 +84,33 @@ class LoginView(FormView):
 def signoutView(request,*args,**kwargs):
     logout(request)
     return redirect('signin')
+
+class ProfileView(View):
+    
+
+    def get(self, request):
+        context = {'form' : ""}
+        return render(request, 'profile.html', context)
+
+    def post(self, request):
+        form = ProfilePicForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            # dp = request.POST.get('profile_pic')
+            # user = User.objects.get(id = request.user.id)
+            # user(profile_pic = dp)
+            # user.save()
+            print(request.POST)
+            return redirect('profile')
+
+    
+
+class ProfileAddView(CreateView):
+    form_class = ProfileForm
+    template_name = 'profile.html'
+    model = UserProfile
+    success_url = reverse_lazy('profile')
+
+
+# class ProfilePicView(CreateView):
+#     form_class = 

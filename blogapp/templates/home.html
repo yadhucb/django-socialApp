@@ -3,10 +3,10 @@
 {% block content %}
 
 <!-- ================= Main ================= -->
-<div class="container-fluid">
+<div class="container-fluid" style="position: relative;">
     <div class="row">
         <!-- ================= Sidebar ================= -->
-        <div class="col-2" style="position: relative;">
+        <div class="col-2">
             <div class="d-none d-lg-block h-100 scrollbar" style="position: fixed; top: 0;">
                 <ul class="navbar-nav mt-4 ms-3 d-flex flex-column mb-5" style="padding-top: 56px">
                     <!-- top -->
@@ -18,8 +18,8 @@
                     text-decoration-none text-dark
                   ">
                             <div class="p-2">
-                                <img src="{{request.user.user_profile.profile_pic.url}}" alt="avatar"
-                                    class="rounded-circle me-2" style="width: 38px; height: 38px; object-fit: cover" />
+                                <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
+                                    style="width: 38px; height: 38px; object-fit: cover" />
                             </div>
                             <div>
                                 <p class="m-0">{{request.user}}</p>
@@ -99,11 +99,11 @@
                     <!-- avatar -->
                     <div class="d-flex" type="button">
                         <div class="p-1">
-                            <img src="{{request.user.user_profile.profile_pic.url}}" alt="avatar"
-                                class="rounded-circle me-2" style="width: 38px; height: 38px; object-fit: cover" />
+                            <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
+                                style="width: 38px; height: 38px; object-fit: cover" />
                         </div>
                         <input type="text" class="form-control rounded-pill border-0 bg-gray pointer" disabled
-                            placeholder="What's on your mind, John?" data-bs-toggle="modal"
+                            placeholder="What's on your mind, {{request.user}}?" data-bs-toggle="modal"
                             data-bs-target="#createModal" />
                     </div>
                     <!-- create modal -->
@@ -126,8 +126,8 @@
                                             <!-- name -->
                                             <div class="d-flex align-items-center">
                                                 <div class="p-2">
-                                                    <img src="{{request.user.user_profile.profile_pic.url}}"
-                                                        alt="from fb" class="rounded-circle"
+                                                    <img src="{{request.user.profile_pic.url}}" alt="from fb"
+                                                        class="rounded-circle"
                                                         style="width: 38px;height: 38px;object-fit: cover;" />
                                                 </div>
                                                 <div>
@@ -196,11 +196,11 @@
                     <div class="d-flex justify-content-between">
                         <!-- avatar -->
                         <div class="d-flex">
-                            <img src="{{blog.user.user_profile.profile_pic.url}}" alt="avatar"
-                                class="rounded-circle me-2" style="width: 38px; height: 38px; object-fit: cover" />
+                            <img src="{{blog.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
+                                style="width: 38px; height: 38px; object-fit: cover" />
                             <div>
                                 <p class="m-0 fw-bold">{{blog.user}}</p>
-                                <span class="text-muted fs-7">{{blog.updated_at}}</span>
+                                <span class="text-muted fs-7">{{blog.updated_at | timesince}}</span>
                             </div>
                         </div>
                         <!-- edit -->
@@ -254,10 +254,9 @@
                     " style="height: 50px; z-index: 5">
                                 <div class="me-2">
                                     <i class="text-primary fas fa-thumbs-up"></i>
-                                    <i class="text-danger fab fa-gratipay"></i>
-                                    <i class="text-warning fas fa-grin-squint"></i>
+
                                 </div>
-                                <p class="m-0 text-muted fs-7">Phu, Tuan, and 3 others</p>
+                                <p class="m-0 text-muted fs-7 like_count{{blog.id}}">{{ blog.get_likes_count}}</p>
                             </div>
                             <!-- comments start-->
                             <div class="accordion" id="accordionExample">
@@ -273,7 +272,8 @@
                             justify-content-end
                           " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}" aria-expanded="false"
                                             aria-controls="collapsePost{{blog.id}}">
-                                            <p class="m-0">2 Comments</p>
+                                            <p class="m-0 comment_count{{blog.id}}">{{blog.blog_comment.all.count}}
+                                                Comments</p>
                                         </div>
                                     </h2>
                                     <hr />
@@ -325,8 +325,8 @@
                                                 <!-- comment 1 -->
                                                 <div class="d-flex align-items-center my-1">
                                                     <!-- avatar -->
-                                                    <img src="https://source.unsplash.com/collection/happy-people"
-                                                        alt="avatar" class="rounded-circle me-2" style="
+                                                    <img src="{{comment.user.profile_pic.url}}" alt="avatar"
+                                                        class="rounded-circle me-2" style="
                                 width: 38px;
                                 height: 38px;
                                 object-fit: cover;
@@ -364,7 +364,7 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <p class="fw-bold m-0">John</p>
+                                                        <p class="fw-bold m-0">{{comment.user}}</p>
                                                         <p class="m-0 fs-7 bg-gray p-2 rounded">
                                                             {{comment.comment}}
                                                         </p>
@@ -378,8 +378,8 @@
                                                 <div class="d-flex my-1 comment">
                                                     <!-- avatar -->
                                                     <div>
-                                                        <img src="{{comment.user.user_profile.profile_pic.url}}"
-                                                            alt="avatar" class="rounded-circle me-2" style="
+                                                        <img src="{{request.user.profile_pic.url}}" alt="avatar"
+                                                            class="rounded-circle me-2" style="
                                   width: 38px;
                                   height: 38px;
                                   object-fit: cover;
@@ -410,12 +410,33 @@
             </div>
         </div>
         <!-- ================= Chatbar ================= -->
-        <div class="col-12 col-lg-4" style="position: relative;">
-            <div class="
-              d-none d-lg-block
-              h-100
-              scrollbar
-            " style="position: fixed; top: 0;">
+        <div class="col-12 col-lg-4" style="position: fixed; top: 5%; right: 0;">
+            <div class="d-none d-lg-block">
+                <!-- dp -->
+                <div class="text-center p-3 mt-4 w-100">
+                    <a href="{% url 'profile' %}">
+                        <div class="p-1">
+                            <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
+                                style="width: 200px; height: 200px; object-fit: cover; position: relative;" />
+
+                        </div>
+                        <h4 class="my-3">{{request.user}}</h4>
+                    </a>
+                </div>
+                <div class="row d-flex justify-content-around p-0 text-center">
+                    <div class="col-3">
+                        <h4>{{request.user.user_blog.all.count}}</h4>
+                        <h4>Posts</h4>
+                    </div>
+                    <div class="col-3 ">
+                        <h4>{{request.user.user_profile.get_followers_count}}</h4>
+                        <h4>Followers</h4>
+                    </div>
+                    <div class="col-3 ">
+                        <h4>{{request.user.user_profile.get_following_count}}</h4>
+                        <h4>Following</h4>
+                    </div>
+                </div>
                 <div class="p-3 mt-4">
                     <!-- sponsors -->
                     <h5 class="text-muted">Sponsored</h5>

@@ -23,6 +23,7 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
+                    $('.comment_count' + blog_id).load(location.href + " .comment_count" + blog_id);
                     document.getElementById("commentForm" + blog_id).reset();
 
                 }
@@ -52,6 +53,8 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     $('.like_btn' + blog_id).load(location.href + " .like_btn" + blog_id);
+                    $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
+
 
 
                 }
@@ -75,7 +78,7 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     $('.like_btn' + blog_id).load(location.href + " .like_btn" + blog_id);
-
+                    $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
 
                 }
             })

@@ -1,12 +1,16 @@
 from django.db import models
-from django .contrib.auth .models import User
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    profile_pic = models.ImageField(upload_to='profile_pics', default='default/pro_pic.png')
+
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE, related_name='user_profile')
-    profile_pic = models.ImageField(upload_to='profile_pics', null=True)
-    bio = models.CharField(max_length=120)
-    mobile = models.CharField(max_length=12)
-    dob = models.DateField(null=True)
+    bio = models.CharField(max_length=120, null=True, blank=True)
+    mobile = models.CharField(max_length=12, null=True, blank=True)
+    dob = models.DateField(null=True, blank=True)
 
     GENDER_CHOICES = (
         ('male', 'male'),
@@ -14,7 +18,7 @@ class UserProfile(models.Model):
         ('other', 'other')
     )
 
-    gender = models.CharField(max_length=12, choices=GENDER_CHOICES, default='male')
+    gender = models.CharField(max_length=12, choices=GENDER_CHOICES, null=True, blank=True)
     following = models.ManyToManyField(User, related_name='followings', blank=True)
     followers = models.ManyToManyField(User, related_name='followers', blank=True)
 
@@ -31,7 +35,7 @@ class UserProfile(models.Model):
         return self.followers.all()
 
     @property
-    def get_following_count(self):
+    def get_followers_count(self):
         return self.get_followers.count()
 
     @property
