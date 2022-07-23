@@ -1,4 +1,3 @@
-from urllib import request
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView
 from django.views import View
@@ -9,6 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import JsonResponse
+from django.db.models import Q
 
 
 class HomeView(CreateView):
@@ -30,6 +30,14 @@ class HomeView(CreateView):
         comment_form = CommentForm()
         context['comment_form'] = comment_form
         return context
+
+def searchBlogView(request):
+    search_input = request.GET.get('search-input')
+    blogs = Blogs.objects.filter(
+        Q(title__icontains = search_input) | 
+        Q(description__icontains = search_input) | 
+        Q(user__username__icontains = search_input))
+    return render(request, 'search.html', {'blogs' : blogs})
 
 def addcommentView(request,*args,**kwargs):
     if request.method =='POST':

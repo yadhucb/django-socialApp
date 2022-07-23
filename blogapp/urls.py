@@ -10,7 +10,7 @@ urlpatterns = [
     path('blog/like/', views.likeView),
     path('blog/unlike/', views.unlikeView),
 
-    path('blog/add-comment/', views.addcommentView, name= 'search'),
+    path('blog/search/', views.searchBlogView, name= 'search-blogs'),
 
     path('user/profile', views.MyProfileView.as_view(), name='my-profile'),
     path('user/profile-add/', views.ProfileAddView.as_view(), name='profile-add'),

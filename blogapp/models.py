@@ -52,6 +52,22 @@ class UserProfile(models.Model):
 
 class Blogs(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_blog')
+    LANGUAGE_CHOICES = (
+        ('Other', 'Other'),
+        ('Python', 'Python'),
+        ('Java', 'Java'),
+        ('Ruby', 'Ruby'),
+        ('HTML', 'HTML'),
+        ('JavaScript', 'JavaScript'),
+        ('C', 'C'),
+        ('C++','C++'),
+        ('C#','C#'),
+        ('PHP','PHP'),
+        ('SQL','SQL'),
+       ('Swift','Swift'),
+
+    )
+    related_language =  models.CharField(max_length=12, choices=LANGUAGE_CHOICES, null=True)
     title = models.CharField(max_length=120)
     description = models.TextField()
     image = models.ImageField(upload_to='blog_images',null=True, blank=True)

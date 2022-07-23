@@ -4,7 +4,7 @@
 
 <!-- ================= Main ================= -->
 <div class="container-fluid" style="position: relative;">
-    <div class="row">
+    <div class="row d-flex">
         <!-- ================= Sidebar ================= -->
         <div class="col-2">
             <div class="d-none d-lg-block h-100 scrollbar" style="position: fixed; top: 0;">
@@ -12,7 +12,7 @@
                     <!-- top -->
                     <!-- avatar -->
                     <li class="dropdown-item p-1 rounded">
-                        <a href="#" class="
+                        <a href="{% url 'my-profile' %}" class="
                     d-flex
                     align-items-center
                     text-decoration-none text-dark
@@ -42,56 +42,11 @@
                             </div>
                         </a>
                     </li>
-
-                    <!-- see more -->
-                    <li class="p-1" type="button">
-                        <div id="accordionFlushExample">
-                            <div>
-                                <!-- see more button -->
-                                <div class="d-flex align-items-center" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    <div class="p-2">
-                                        <i class="fas fa-chevron-down rounded-circle p-2"
-                                            style="background-color: #d5d5d5 !important"></i>
-                                    </div>
-                                    <div>
-                                        <p class="m-0">See More</p>
-                                    </div>
-                                </div>
-                                <!-- content -->
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div>
-                                        <!-- item 1 -->
-                                        <div class="
-                                                    d-flex
-                                                    align-items-center
-                                                    dropdown-item
-                                                    p-0
-                                                    m-0">
-                                            <div class="p-2">
-                                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/Y7r38CcFEw5.png"
-                                                    alt="from fb" class="rounded-circle" style="
-                                                        width: 38px;
-                                                        height: 38px;
-                                                        object-fit: cover;" />
-                                            </div>
-                                            <div>
-                                                <p class="m-0">Campus</p>
-                                            </div>
-                                        </div>
-                                        <!-- end -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
         <!-- ================= Timeline ================= -->
-        <div class="col-12 col-lg-6 pb-5">
+        <div class="col-12 col-lg-6 pb-5 ms-lg-5">
             <div class="d-flex flex-column justify-content-center w-100 mx-auto" style="padding-top: 56px;">
 
                 <!-- create post -->
@@ -412,7 +367,7 @@
             </div>
         </div>
         <!-- ================= Chatbar ================= -->
-        <div class="col-12 col-lg-4 scrollbar h-100" style="position: fixed; top: 5%; right: 0; z-index: 4;">
+        <div class="col-12 col-lg-3 scrollbar h-100" style="position: fixed; top: 5%; right: 0; z-index: 4;">
             <div class="d-none d-lg-block">
                 <!-- dp -->
                 <div class="text-center p-3 mt-4 w-100">
@@ -428,18 +383,18 @@
                 <div class="row d-flex justify-content-around p-0 text-center">
                     <div class="col-3">
                         <h4>{{request.user.user_blog.all.count}}</h4>
-                        <h4>Posts</h4>
+                        <h6>Posts</h6>
                     </div>
                     <div class="col-3 ">
                         <h4>{{request.user.user_profile.get_followers_count}}</h4>
-                        <h4>Followers</h4>
+                        <h6>Followers</h6>
                     </div>
                     <div class="col-3 ">
                         <h4 class="following_count">{{request.user.user_profile.get_following_count}}</h4>
-                        <h4>Following</h4>
+                        <h6>Following</h6>
                     </div>
                 </div>
-                <div class="p-3 mt-4">
+                <div class="p-3 mt-4 mb-5">
                     <!-- suggestions -->
                     <h5 class="text-muted">Suggestions</h5>
 
@@ -455,7 +410,7 @@
                   ">
                             <img src="{{user.profile_pic.url}}" alt="ads"
                                 style="width: 100px; height: 100px; object-fit: cover" class="rounded me-3" />
-                            <div class="follow_container">
+                            <div class="follow_container ms-3">
                                 <p class="mb-3">{{user}}</p>
                                 {% csrf_token %}
                                 <input class="follow_user_id" type="hidden" name="" value="{{user.id}}">
@@ -463,206 +418,8 @@
                             </div>
 
                         </a>
-                        <!-- icon -->
-                        <div class="
-                    rounded-circle
-                    p-1
-                    bg-white
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    mx-2
-                    sponsor-icon
-                    nav-item
-                  " type="button" style="width: 38px; height: 38px">
-                            <i class="fas fa-ellipsis-h text-muted p-2" data-bs-toggle="dropdown"></i>
-                            <!-- menu -->
-                            <ul class="dropdown-menu">
-                                <!-- item 1 -->
-                                <li class="dropdown-item">
-                                    <a href="#" class="
-                          d-flex
-                          align-items-center
-                          text-decoration-none text-dark
-                        ">
-                                        <i class="far fa-window-close"></i>
-                                        <div class="ms-3">
-                                            <p class="m-0">Hide Ad</p>
-                                            <span class="text-muted fs-7">Never see this add again.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- item 2 -->
-                                <li class="dropdown-item">
-                                    <a href="#" class="
-                          d-flex
-                          align-items-center
-                          text-decoration-none text-dark
-                        ">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        <div class="ms-3">
-                                            <p class="m-0">Report Ad</p>
-                                            <span class="text-muted fs-7">Tell us a problem with this add.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <!-- item 3 -->
-                                <li class="dropdown-item">
-                                    <a href="#" class="
-                          d-flex
-                          align-items-center
-                          text-decoration-none text-dark
-                        ">
-                                        <i class="fas fa-info-circle"></i>
-                                        <div class="ms-3">
-                                            <p class="m-0">Why am I seeing this ad?</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                     {% endfor %}
-                    <!-- contacts -->
-                    <hr class="m-0" />
-                    <div class="my-3 d-flex justify-content-between align-items-center">
-                        <p class="text-muted fs-5 m-0">Contacts</p>
-                        <!-- icons -->
-                        <div class="text-muted">
-                            <!-- video room -->
-                            <i class="fas fa-video mx-2 pointer" type="button" data-bs-toggle="modal"
-                                data-bs-target="#videoRoomD"></i>
-                            <!-- video room modal -->
-                            <div class="modal fade" id="videoRoomD" tabindex="-1" aria-labelledby="videoRoomDLabel"
-                                aria-hidden="true" data-bs-backdrop="false">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content bg-dark">
-                                        <!-- header -->
-                                        <div class="modal-header border-0">
-                                            <button type="button" class="btn-close btn-close-white"
-                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <!-- body -->
-                                        <div class="
-                            modal-body
-                            d-flex
-                            flex-column
-                            align-items-center
-                            justify-content-center
-                          " style="min-height: 400px">
-                                            <i class="fas fa-video fs-0"></i>
-                                            <h3 class="text-white">Schedule A Room For Later</h3>
-                                            <p class="text-white text-center w-50 mx-auto">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing
-                                                elit. Ut deserunt alias laudantium itaque eius enim
-                                                natus culpa eligendi consectetur maiores!
-                                            </p>
-                                            <button class="btn btn-lg btn-primary rounded-pill">
-                                                Schedule Room
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- new chat -->
-                            <i class="fas fa-search mx-2 pointer" type="button" data-bs-toggle="modal"
-                                data-bs-target="#newChat"></i>
-                            <!-- chat settings -->
-                            <i class="fas fa-ellipsis-h pointer text-muted mx-2" type="button"
-                                data-bs-toggle="dropdown"></i>
-                            <!-- chat setting dd -->
-                            <ul class="dropdown-menu shadow" style="width: 18em">
-                                <!-- title -->
-                                <div class="p-2">
-                                    <h5>Chat Settings</h5>
-                                    <span class="text-muted fs-7">Customize your Messenger experience.</span>
-                                </div>
-                                <hr />
-                                <!-- incoming sound -->
-                                <li>
-                                    <div class="
-                          dropdown-item
-                          d-flex
-                          align-items-center
-                          justify-content-between
-                        ">
-                                        <!-- icon -->
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-phone-alt me-3"></i>
-                                            <p class="m-0">Incoming call sounds</p>
-                                        </div>
-                                        <!-- toggle -->
-                                        <div class="form-check form-switch m-0">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                checked />
-                                            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <hr class="m-0" />
-                                <!-- item 1 -->
-                                <li>
-                                    <div class="
-                          dropdown-item
-                          d-flex
-                          align-items-center
-                          justify-content-between
-                        ">
-                                        <!-- icon -->
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-toggle-off me-3"></i>
-                                            <p class="m-0">Turn Off Active Status</p>
-                                        </div>
-                                    </div>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- friend 1 -->
-                    <li class="dropdown-item rounded my-2 px-0" type="button" data-bs-toggle="modal"
-                        data-bs-target="#singleChat1">
-                        <!-- avatar -->
-                        <div class="d-flex align-items-center mx-2 chat-avatar" data-bs-custom-class="chat-box"
-                            data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left"
-                            data-bs-trigger="hover" data-bs-content='
-                    <div>
-                      <div class="popover-body d-flex p-2">
-                        <div>
-                          <img src="" alt="avatar" class="pop-avatar"  />
-                        </div>
-                        <div >
-                          <h5>Mike</h5>
-                          <div class="d-flex">
-                            <i class="fas fa-user-friends m-1 text-muted"></i>
-                            <p>2 mutual friends: <span class="fw-bold">Jerry</span> and <span class="fw-bold">Phu</span></p>
-                          </div>
-                          <div class="d-flex">
-                          <i class="fas fa-graduation-cap m-1 text-muted"></i>
-                          <p>Studies at MIT</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ' data-bs-html="true">
-                            <div class="position-relative">
-                                <img src="" alt="avatar" class="rounded-circle me-2"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                                <span class="
-                        position-absolute
-                        bottom-0
-                        translate-middle
-                        border border-light
-                        rounded-circle
-                        bg-success
-                        p-1
-                      " style="left: 75%">
-                                    <span class="visually-hidden"></span>
-                                </span>
-                            </div>
-                            <p class="m-0">Friend</p>
-                        </div>
-                    </li>
                 </div>
             </div>
         </div>
