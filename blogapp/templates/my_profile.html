@@ -63,7 +63,7 @@
             </div>
             <div class="col-3">
                 <div data-bs-toggle="modal" data-bs-target="#followers" role="button">
-                    <h4>{{request.user.user_profile.get_followers_count}}</h4>
+                    <h4 class="followers_count">{{request.user.user_profile.get_followers_count}}</h4>
                     <h4>Followers</h4>
                 </div>
 
@@ -95,12 +95,12 @@
                                         <img src="{{user.profile_pic.url}}" alt="ads"
                                             style="width: 100px; height: 100px; object-fit: cover"
                                             class="rounded me-3" />
-                                        <div class="followers_container">
+                                        <div class="follower_container">
                                             <p class="mb-3">{{user}}</p>
                                             {% csrf_token %}
-                                            <input class="followers_user_id" type="hidden" name="" value="{{user.id}}">
+                                            <input class="follower_user_id" type="hidden" name="" value="{{user.id}}">
                                             <button
-                                                class="btn btn-secondary remove_follower_btn followers{{user.id}}">Remove</button>
+                                                class="btn btn-secondary remove_follower_btn follower{{user.id}}">Remove</button>
                                         </div>
 
                                     </a>
@@ -173,7 +173,7 @@
             </div>
             <div class="col-3">
                 <div data-bs-toggle="modal" data-bs-target="#following" role="button">
-                    <h4>{{request.user.user_profile.get_following_count}}</h4>
+                    <h4 class="following_count">{{request.user.user_profile.get_following_count}}</h4>
                     <h4>Following</h4>
                 </div>
 
@@ -210,7 +210,7 @@
                                             {% csrf_token %}
                                             <input class="following_user_id" type="hidden" name="" value="{{user.id}}">
                                             <button
-                                                class="btn btn-secondary following_btn followinged{{user.id}}">Unfollow</button>
+                                                class="btn btn-secondary unfollow_btn following{{user.id}}">Unfollow</button>
                                         </div>
 
                                     </a>

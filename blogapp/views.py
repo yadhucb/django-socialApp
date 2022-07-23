@@ -58,6 +58,34 @@ def unlikeView(request):
         blog.liked_by.remove(request.user)
         return JsonResponse({'suucess' : 'unliked'})
 
+def removeFollowerView(request):
+    if request.method == 'POST':
+        follower_user_id = request.POST.get('follower_user_id')
+        follower_user = User.objects.get(id=follower_user_id)
+        follower_user_profile = UserProfile.objects.get(user = follower_user)
+        follower_user_profile.following.remove(request.user)
+        follower_user_profile.save()
+
+        remove_request_user_profile = request.user.user_profile
+        remove_request_user_profile.followers.remove(follower_user)
+        remove_request_user_profile.save()
+
+        return JsonResponse({'suucess' : 'followed'})
+
+def unfollowView(request):
+    if request.method == 'POST':
+        following_user_id = request.POST.get('following_user_id')
+        following_user = User.objects.get(id=following_user_id)
+        following_user_profile = UserProfile.objects.get(user = following_user)
+        following_user_profile.followers.remove(request.user)
+        following_user_profile.save()
+
+        unfollow_request_user_profile = request.user.user_profile
+        unfollow_request_user_profile.following.remove(following_user)
+        unfollow_request_user_profile.save()
+
+        return JsonResponse({'suucess' : 'followed'})
+
 def followView(request):
     if request.method == 'POST':
         follow_user_id = request.POST.get('follow_user_id')

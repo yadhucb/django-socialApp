@@ -18,16 +18,22 @@
                         aria-labelledby="searchMenu">
                         <!-- search input -->
                         <li class="dropdown-item" role="alert">
-                            <input type="text" class="rounded-pill border-0 bg-gray dropdown-item w-100"
-                                placeholder="Search" />
+                            <form action="">
+                                <input type="text" class="rounded-pill border-0 bg-gray dropdown-item w-100"
+                                    placeholder="Search" />
+                            </form>
                         </li>
                     </ul>
                     <!-- desktop -->
                     <span class="input-group-prepend d-none d-lg-block">
-                        <div class="d-flex">
-                            <input style="min-height: 40px; min-width: 230px" type="text"
-                                class="input-group-text bg-gray border-0 rounded-pill" placeholder="Search" />
-                            <i class="fas fa-search me-2 text-muted fs-3 ms-3 pt-1"></i>
+                        <div>
+                            <form class="d-flex" action="{% url 'search' %}">
+                                <input name="search-input" style="min-height: 40px; min-width: 230px" type="text"
+                                    class="input-group-text bg-gray border-0 rounded-pill" placeholder="Search" />
+                                <button type="submit">
+                                    <i class="fas fa-search me-2 text-muted fs-3 ms-3 pt-1"></i>
+                                </button>
+                            </form>
                         </div>
                     </span>
                 </div>

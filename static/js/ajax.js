@@ -110,5 +110,50 @@ $(document).ready(function () {
         })
     })
 
+    // ======== remove follower ==========
 
+    $(document).on('click', '.remove_follower_btn', function (e) {
+        console.log('foloowwww')
+        e.preventDefault();
+
+        var follower_user_id = $(this).closest('.follower_container').find('.follower_user_id').val();
+        console.log('like_text', follower_user_id)
+        var token = $('input[name=csrfmiddlewaretoken]').val()
+        $.ajax({
+            method: 'POST',
+            url: '/user/remove-follower/',
+            data: {
+                'follower_user_id': follower_user_id,
+                csrfmiddlewaretoken: token
+
+            },
+            success: function (data) {
+                $('.follower' + follower_user_id).html('Removed');
+                $('.followers_count').load(location.href + ' .followers_count');
+            }
+        })
+    })
+
+    // ======== unfollow ==========
+
+    $(document).on('click', '.unfollow_btn', function (e) {
+        console.log('foloowwww')
+        e.preventDefault();
+
+        var following_user_id = $(this).closest('.following_container').find('.following_user_id').val();
+        var token = $('input[name=csrfmiddlewaretoken]').val()
+        $.ajax({
+            method: 'POST',
+            url: '/user/unfollow/',
+            data: {
+                'following_user_id': following_user_id,
+                csrfmiddlewaretoken: token
+
+            },
+            success: function (data) {
+                $('.following' + following_user_id).html('Removed');
+                $('.following_count').load(location.href + ' .following_count');
+            }
+        })
+    })
 });
