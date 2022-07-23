@@ -1,4 +1,14 @@
+a {
+    text-decoration: none;
+    color: #000
+}
+
+
+
+
 /* comment */
+
+
 .post__comment .accordion-button::after {
     margin-left: 0 !important;
     display: none !important;
@@ -46,4 +56,33 @@ button.liked i {
         filter: blur(0.5px);
         -webkit-filter: blur(0.5px);
     }
+}
+
+.scrollbar {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+}
+
+html {
+    --scrollbarBG: #d759db;
+    --thumbBG: #7aaac2;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 11px;
+}
+
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
 }

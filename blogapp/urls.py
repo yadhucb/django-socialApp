@@ -10,8 +10,11 @@ urlpatterns = [
     path('blog/like/', views.likeView),
     path('blog/unlike/', views.unlikeView),
 
-    path('user/profile', views.ProfileView.as_view(), name='profile'),
+    path('user/profile', views.MyProfileView.as_view(), name='my-profile'),
     path('user/profile-add/', views.ProfileAddView.as_view(), name='profile-add'),
+    path('other/profile/<str:user_id>', views.otherProfileView, name='other-profile'),
 
+
+    path('user/follow/', views.followView),
 
 ]

@@ -23,12 +23,12 @@ class UserProfile(models.Model):
     followers = models.ManyToManyField(User, related_name='followers', blank=True)
 
     @property
-    def get_followings(self):
+    def get_following(self):
         return self.following.all()
 
     @property
     def get_following_count(self):
-        return self.get_followings.count()
+        return self.get_following.count()
 
     @property
     def get_followers(self):
@@ -42,7 +42,7 @@ class UserProfile(models.Model):
     def get_suggestions(self):
         all_user_profiles = UserProfile.objects.all().exclude(user=self.user)
         all_user_list = [userprofile.user for userprofile in all_user_profiles]
-        following_list = [user for user in self.get_followings]
+        following_list = [user for user in self.get_following]
         invitations = [user for user in all_user_list if user not in following_list]
         return invitations
 

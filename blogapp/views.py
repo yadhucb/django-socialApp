@@ -58,6 +58,20 @@ def unlikeView(request):
         blog.liked_by.remove(request.user)
         return JsonResponse({'suucess' : 'unliked'})
 
+def followView(request):
+    if request.method == 'POST':
+        follow_user_id = request.POST.get('follow_user_id')
+        follow_user = User.objects.get(id=follow_user_id)
+        follow_user_profile = UserProfile.objects.get(user = follow_user)
+        follow_user_profile.followers.add(request.user)
+        follow_user_profile.save()
+
+        follow_request_user_profile = request.user.user_profile
+        follow_request_user_profile.following.add(follow_user)
+        follow_request_user_profile.save()
+
+        return JsonResponse({'suucess' : 'followed'})
+
 
 class SignUpView(CreateView):
     form_class=UserRegistrationForm
@@ -85,32 +99,47 @@ def signoutView(request,*args,**kwargs):
     logout(request)
     return redirect('signin')
 
-class ProfileView(View):
-    
+class MyProfileView(View):
 
     def get(self, request):
-        context = {'form' : ""}
-        return render(request, 'profile.html', context)
+        return render(request, 'my_profile.html')
 
     def post(self, request):
         form = ProfilePicForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            # dp = request.POST.get('profile_pic')
-            # user = User.objects.get(id = request.user.id)
-            # user(profile_pic = dp)
-            # user.save()
             print(request.POST)
-            return redirect('profile')
+            return redirect('my-profile')
 
-    
+ 
 
 class ProfileAddView(CreateView):
-    form_class = ProfileForm
-    template_name = 'profile.html'
-    model = UserProfile
-    success_url = reverse_lazy('profile')
+    try:
+        def get(self, request):
+            profile = UserProfile.objects.get(user = request.user)
+            form = ProfileForm(instance=profile)
+            return render(request, 'profile_add.html', {'form' : form})
+        
+        def post(self, request):
+            profile = UserProfile.objects.get(user = request.user)
+            form = ProfileForm(request.POST, instance=profile)
+            if form.is_valid():
+                form.save()
+                return render(request, 'my_profile.html')
+    except:
+        form_class = ProfileForm
+        template_name = 'profile_add.html'
+        model = UserProfile
+        success_url = reverse_lazy('my-profile')
+
+        def form_valid(self, form):
+            form.instance.user = self.request.user
+            self.object = form.save()
+            messages.success(self.request,'post updated')
+            return super().form_valid(form)
 
 
-# class ProfilePicView(CreateView):
-#     form_class = 
+def otherProfileView(request, *args, **kwargs):
+    user_id = kwargs.get('user_id')
+    user = User.objects.get(id = user_id)
+    return render(request, 'other-profile.html', {'user' : user})

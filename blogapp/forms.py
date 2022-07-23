@@ -29,6 +29,13 @@ class ProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['bio', 'mobile', 'dob', 'gender']
 
+        widgets = {
+            'bio' : forms.Textarea(attrs={'class' : 'form-control', 'placeholder' :'Bio'}),
+            'mobile' : forms.NumberInput(attrs={'class' : 'form-control', 'placeholder' : 'Mobile'}),
+            'dob' : forms.DateInput(attrs={'class' : 'form-control', 'type' : 'date'}),
+            'gender' : forms.Select(attrs={'class' : 'form-control'}),
+        }
+
 class BlogsForm(forms.ModelForm):
     class Meta:
         model=Blogs

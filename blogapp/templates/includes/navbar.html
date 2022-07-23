@@ -19,15 +19,15 @@
                         <!-- search input -->
                         <li class="dropdown-item" role="alert">
                             <input type="text" class="rounded-pill border-0 bg-gray dropdown-item w-100"
-                                placeholder="Search" autofocus />
+                                placeholder="Search" />
                         </li>
                     </ul>
                     <!-- desktop -->
                     <span class="input-group-prepend d-none d-lg-block">
                         <div class="d-flex">
                             <input style="min-height: 40px; min-width: 230px" type="text"
-                                class="input-group-text bg-gray border-0 rounded-pill" placeholder="Search" autofocus />
-                            <i class="fas fa-search me-2 text-muted fs-2 ms-3 pt-1"></i>
+                                class="input-group-text bg-gray border-0 rounded-pill" placeholder="Search" />
+                            <i class="fas fa-search me-2 text-muted fs-3 ms-3 pt-1"></i>
                         </div>
                     </span>
                 </div>
@@ -35,11 +35,11 @@
             <!-- nav -->
             <div class=" col d-none d-xl-flex justify-content-center">
                 <!-- home -->
-                <div class="mx-4 nav__btn nav__btn-active">
+                <a href="{% url 'home' %}" class="mx-4 nav__btn nav__btn-active">
                     <button type="button" class="btn px-4">
                         <i class="fas fa-home text-muted fs-4"></i>
                     </button>
-                </div>
+                </a>
                 <!-- group -->
                 <div class="mx-4 nav__btn">
                     <button type="button" class="btn px-4">
