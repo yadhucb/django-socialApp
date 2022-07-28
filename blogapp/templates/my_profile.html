@@ -59,12 +59,12 @@
         <div class="row d-flex justify-content-around p-0 text-center">
             <div class="col-3">
                 <h4>{{request.user.user_blog.all.count}}</h4>
-                <h4>Posts</h4>
+                <h6>Posts</h6>
             </div>
             <div class="col-3">
                 <div data-bs-toggle="modal" data-bs-target="#followers" role="button">
                     <h4 class="followers_count">{{request.user.user_profile.get_followers_count}}</h4>
-                    <h4>Followers</h4>
+                    <h6>Followers</h6>
                 </div>
 
                 <!-- Modal -->
@@ -174,7 +174,7 @@
             <div class="col-3">
                 <div data-bs-toggle="modal" data-bs-target="#following" role="button">
                     <h4 class="following_count">{{request.user.user_profile.get_following_count}}</h4>
-                    <h4>Following</h4>
+                    <h6>Following</h6>
                 </div>
 
                 <!-- Modal -->
@@ -408,7 +408,7 @@
                                 align-items-center
                                 pointer
                                 text-muted
-                                p-1
+                                
                                 w-50
                               " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}"
                                             aria-expanded="false" aria-controls="collapsePost{{blog.id}}" role="button">
@@ -452,7 +452,7 @@
                                                 {% for comment in blog.blog_comment.all%}
                                                 <!-- comment 1 -->
                                                 <hr>
-                                                <div class="d-flex align-items-center my-1 px-3">
+                                                <div class="d-flex align-items-center my-1 px-lg-3">
                                                     <!-- avatar -->
                                                     <img src="{{comment.user.profile_pic.url}}" alt="avatar"
                                                         class="rounded-circle me-2" style="

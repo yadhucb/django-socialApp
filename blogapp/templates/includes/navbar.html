@@ -15,13 +15,16 @@
                             <i class="fas fa-search text-muted"></i>
                         </div>
                     </span>
-                    <ul class="dropdown-menu overflow-auto border-0 shadow p-3 " style="width: 400px;"
+                    <ul class="dropdown-menu overflow-auto border-0 shadow p-3 d-lg-none" style="width: 400px;"
                         aria-labelledby="searchMenu">
                         <!-- search input -->
-                        <li class="dropdown-item" role="alert">
-                            <form action="">
-                                <input type="text" class="rounded-pill border-0 bg-gray dropdown-item w-100"
-                                    placeholder="Search" />
+                        <li class="" role="alert">
+                            <form class="d-flex" action="{% url 'search-blogs' %}">
+                                <input name="search-input" style="min-height: 40px; min-width: 230px" type="text"
+                                    class="input-group-text bg-gray border-0 rounded-pill" placeholder="Search" />
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-search me-2 text-muted fs-3 ms-3 pt-1"></i>
+                                </button>
                             </form>
                         </li>
                     </ul>

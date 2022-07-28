@@ -94,3 +94,13 @@ html {
     border-radius: 6px;
     border: 3px solid var(--scrollbarBG);
 }
+
+@media(max-width:767px) {
+    .add_profile {
+        margin-top: 25% !important;
+    }
+
+    .row {
+        --bs-gutter-x: 0;
+    }
+}

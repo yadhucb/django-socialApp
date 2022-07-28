@@ -251,7 +251,7 @@
             </div>
         </div>
         <!-- ================= Timeline ================= -->
-        <div class="col-12 col-lg-6 pb-5 pe-5" style="z-index: 10;">
+        <div class="col-12 col-lg-6 p-0 pb-5 pe-lg-5" style="z-index: 10;">
             <div class="d-flex flex-column justify-content-center w-100 mx-auto" style="padding-top: 56px;">
                 {% if not no_blog_post %}
                 <!-- create post -->
@@ -505,7 +505,7 @@
                             align-items-center
                             pointer
                             text-muted
-                            p-1
+                            
                             w-50
                           " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}" aria-expanded="false"
                                             aria-controls="collapsePost{{blog.id}}" role="button">
@@ -549,7 +549,7 @@
                                                 {% for comment in blog.blog_comment.all%}
                                                 <!-- comment 1 -->
                                                 <hr>
-                                                <div class="d-flex align-items-center my-1 px-3">
+                                                <div class="d-flex align-items-center my-lg-1 px-lg-3">
                                                     <!-- avatar -->
                                                     <img src="{{comment.user.profile_pic.url}}" alt="avatar"
                                                         class="rounded-circle me-2" style="
@@ -558,7 +558,7 @@
                                 object-fit: cover;
                               " />
                                                     <!-- comment text -->
-                                                    <div class="p-3 rounded comment__input w-100">
+                                                    <div class="p-lg-3 rounded comment__input w-100">
                                                         {% if comment.user == request.user%}
                                                         <!-- comment menu of author -->
                                                         <div class="d-flex justify-content-end">
