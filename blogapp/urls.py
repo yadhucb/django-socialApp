@@ -9,6 +9,8 @@ urlpatterns = [
     path('accounts/sigin',views.LoginView.as_view(), name='signin'),
     path('accounts/signout',views.signoutView, name='signout'),
 
+    path('blog/add-comment/', views.addcommentView, name= 'add-comment'),
+    path('blog/edit-comment/', views.CommentEditView.as_view(), name= 'edit-comment'),
     path('blog/like/', views.likeView),
     path('blog/unlike/', views.unlikeView),
 

@@ -86,25 +86,7 @@ $(document).ready(function () {
         }
     })
 
-    // =========== delete comment ===========
-    $(document).on('click', '.delete_comment', function (e) {
-        e.preventDefault();
-        var comment_id = $(this).closest('.edit_comment_container').find('.comment_id').val();
-        var blog_id = $(this).closest('.edit_comment_container').find('.blog_id').val();
 
-        $.ajax({
-            method: 'GET',
-            url: '/blog/delete-comment/',
-            data: {
-                'comment_id': comment_id,
-
-            },
-            success: function (data) {
-                $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
-                $('.comment_count' + blog_id).load(location.href + " .comment_count" + blog_id);
-            }
-        })
-    })
 
     $(document).on('click', '.like_btn', function (e) {
         console.log('likessssss')

@@ -91,6 +91,29 @@ def addcommentView(request,*args,**kwargs):
         messages.success(request,'comment added successfully')
         return JsonResponse({'suucess' : 'comment added'})
 
+class CommentEditView(View):
+
+    comment = None
+
+    def get(self, request):
+        comment_id = request.GET.get('comment_id')
+        global comment
+        comment = Comments.objects.get(id = comment_id)
+        data = {
+            'comment' : comment.comment
+        }
+        print(data)
+        return JsonResponse(data)
+
+    def post(self, request):
+        instance = comment
+        comment_input = request.POST.get('comment')
+        instance.comment = comment_input
+        instance.save()
+        messages.success(request,'comment edited successfully')
+        return JsonResponse({'suucess' : 'comment edited'})
+
+
 
 def likeView(request):
     if request.method == 'POST':
