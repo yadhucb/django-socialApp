@@ -203,17 +203,15 @@ class LoginView(FormView):
     
     
     def post(self,request,*args,**kwargs):
-        if not request.user:
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user:
-                print('success')
-                login(request, user)
-                return redirect('home')
-            else:
-                return render(request, 'signin.html', {'form' : self.form_class})
-        return redirect('home')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            print('success')
+            login(request, user)
+            return redirect('home')
+        else:
+            return render(request, 'signin.html', {'form' : self.form_class})
 
 @login_required(login_url='signin')
 def signoutView(request,*args,**kwargs):
