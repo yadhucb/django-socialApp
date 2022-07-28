@@ -113,7 +113,12 @@ class CommentEditView(View):
         messages.success(request,'comment edited successfully')
         return JsonResponse({'suucess' : 'comment edited'})
 
-
+def deletecommentView(request,*args,**kwargs):
+    comment_id = request.GET.get('comment_id')
+    comment = Comments.objects.get(id = comment_id)
+    comment.delete()
+    messages.success(request,'comment deleted successfully')
+    return JsonResponse({'suucess' : 'comment deleted'})
 
 def likeView(request):
     if request.method == 'POST':

@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('blog/add-comment/', views.addcommentView, name= 'add-comment'),
     path('blog/edit-comment/', views.CommentEditView.as_view(), name= 'edit-comment'),
+    path('blog/delete-comment/', views.deletecommentView, name= 'delete-comment'),
     path('blog/like/', views.likeView),
     path('blog/unlike/', views.unlikeView),
 
