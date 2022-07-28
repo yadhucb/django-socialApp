@@ -56,8 +56,8 @@
             </div>
             <div class="col-3">
                 <div data-bs-toggle="modal" data-bs-target="#followers" role="button">
-                    {% if request.user.user_profile.get_followers_count %}
-                    <h4>{{request.user.user_profile.get_followers_count}}</h4>
+                    {% if user.user_profile.get_followers_count %}
+                    <h4>{{user.user_profile.get_followers_count}}</h4>
                     {% else %}
                     <h4>0</h4>
                     {% endif %}
@@ -106,8 +106,8 @@
             </div>
             <div class="col-3">
                 <div data-bs-toggle="modal" data-bs-target="#following" role="button">
-                    {% if request.user.user_profile.get_following_count %}
-                    <h4 class="following_count">{{request.user.user_profile.get_following_count}}</h4>
+                    {% if user.user_profile.get_following_count %}
+                    <h4 class="following_count">{{user.user_profile.get_following_count}}</h4>
                     {% else %}
                     <h4>0</h4>
                     {% endif %}
