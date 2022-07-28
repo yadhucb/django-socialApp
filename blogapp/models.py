@@ -71,7 +71,7 @@ class Blogs(models.Model):
     )
     related_language =  models.CharField(max_length=12, choices=LANGUAGE_CHOICES, null=True, blank=True)
     title = models.CharField(max_length=120)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='blog_images',null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
