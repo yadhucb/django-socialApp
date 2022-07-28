@@ -292,12 +292,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="m-0 fw-bold">{{request.user}}</p>
-                                                    <select class="form-select border-0 bg-gray w-75 fs-7"
-                                                        aria-label="Default select example">
-                                                        <option selected value="1">Public</option>
-                                                        <option value="2">Pin To Top</option>
-                                                        <option value="3">Hide</option>
-                                                    </select>
+
                                                 </div>
                                             </div>
                                             <form action="" method="post" enctype="multipart/form-data">
@@ -452,7 +447,6 @@
                     " style="height: 50px; z-index: 5">
                                 <div class="me-2">
                                     <i class="text-primary fas fa-thumbs-up"></i>
-
                                 </div>
                                 <p class="m-0 text-muted fs-7 like_count{{blog.id}}">{{ blog.get_likes_count}}</p>
                             </div>
@@ -484,11 +478,11 @@
                                             like_btn{{blog.id}}" role="button">
                                                 {% if request.user in blog.liked_by.all %}
                                                 <i class="fas fa-thumbs-up me-3 text-primary"></i>
-                                                <p class="m-0">Liked</p>
+                                                <p class="m-0 liked_text{{blog.id}}">Liked</p>
                                                 <input type="hidden" name="" class="is_liked" value="True">
                                                 {% else %}
                                                 <i class="fas fa-thumbs-up me-3"></i>
-                                                <p class="m-0">Like</p>
+                                                <p class="m-0 like_text{{blog.id}}">Like</p>
                                                 <input type="hidden" name="" class="is_liked" value="False">
                                                 {% endif %}
 
@@ -663,7 +657,7 @@
                     <!-- s 1 -->
                     <li class="dropdown-item my-2 d-flex justify-content-between">
                         <!-- img -->
-                        <a href="#" class="
+                        <a href="{% url 'other-profile' user.id %}" class="
                     d-flex
                     align-items-center
                     text-decoration-none

@@ -61,9 +61,9 @@
                 <h4>{{request.user.user_blog.all.count}}</h4>
                 <h6>Posts</h6>
             </div>
-            <div class="col-3">
+            <div class="col-3 followers_container">
                 <div data-bs-toggle="modal" data-bs-target="#followers" role="button">
-                    <h4 class="followers_count">{{request.user.user_profile.get_followers_count}}</h4>
+                    <h4 class="">{{request.user.user_profile.get_followers_count}}</h4>
                     <h6>Followers</h6>
                 </div>
 
@@ -171,24 +171,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 refresh-follwing">
                 <div data-bs-toggle="modal" data-bs-target="#following" role="button">
-                    <h4 class="following_count">{{request.user.user_profile.get_following_count}}</h4>
+                    <h4 class="">{{request.user.user_profile.get_following_count}}</h4>
                     <h6>Following</h6>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="following" tabindex="-1" aria-labelledby="followingLabel"
+                <div class="modal fade " id="following" tabindex="-1" aria-labelledby="followingLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                    <div class="modal-dialog ">
+                        <div class="modal-content ">
 
                             <div class="modal-header">
                                 <h5 class="modal-title" id="followingLabel">Following</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body ">
                                 <!-- Following -->
 
 
@@ -196,7 +196,7 @@
                                 <!-- s 1 -->
                                 <li class="dropdown-item my-2 d-flex justify-content-between">
                                     <!-- img -->
-                                    <a href="#" class="
+                                    <a href="{% url 'other-profile' user.id %}" class="
                     d-flex
                     align-items-center
                     text-decoration-none
@@ -214,65 +214,6 @@
                                         </div>
 
                                     </a>
-                                    <!-- icon -->
-                                    <div class="
-                    rounded-circle
-                    p-1
-                    bg-white
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    mx-2
-                    sponsor-icon
-                    nav-item
-                  " type="button" style="width: 38px; height: 38px">
-                                        <i class="fas fa-ellipsis-h text-muted p-2" data-bs-toggle="dropdown"></i>
-                                        <!-- menu -->
-                                        <ul class="dropdown-menu">
-                                            <!-- item 1 -->
-                                            <li class="dropdown-item">
-                                                <a href="#" class="
-                          d-flex
-                          align-items-center
-                          text-decoration-none text-dark
-                        ">
-                                                    <i class="far fa-window-close"></i>
-                                                    <div class="ms-3">
-                                                        <p class="m-0">Hide Ad</p>
-                                                        <span class="text-muted fs-7">Never see this add again.</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- item 2 -->
-                                            <li class="dropdown-item">
-                                                <a href="#" class="
-                          d-flex
-                          align-items-center
-                          text-decoration-none text-dark
-                        ">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                    <div class="ms-3">
-                                                        <p class="m-0">Report Ad</p>
-                                                        <span class="text-muted fs-7">Tell us a problem with this
-                                                            add.</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!-- item 3 -->
-                                            <li class="dropdown-item">
-                                                <a href="#" class="
-                          d-flex
-                          align-items-center
-                          text-decoration-none text-dark
-                        ">
-                                                    <i class="fas fa-info-circle"></i>
-                                                    <div class="ms-3">
-                                                        <p class="m-0">Why am I seeing this ad?</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                                 {% endfor %}
 
@@ -289,19 +230,23 @@
 
                 <!-- posts -->
                 <!-- p 1 -->
+                {% if request.user.user_blog %}
                 {% for blog in request.user.user_blog.all %}
+
                 <div class="bg-white p-4 rounded shadow mt-3">
                     <!-- author -->
                     <div class="d-flex justify-content-between">
                         <!-- avatar -->
-                        <div class="d-flex">
-                            <img src="{{blog.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2 mt-1"
-                                style="width: 38px; height: 38px; object-fit: cover" />
-                            <div>
-                                <p class="m-0 fw-bold text-muted">{{blog.user}}</p>
-                                <span class="text-muted fs-7">{{blog.updated_at | timesince}} ago</span>
+                        <a href="{% url 'other-profile' blog.user.id %}">
+                            <div class="d-flex">
+                                <img src="{{blog.user.profile_pic.url}}" alt="avatar" class="rounded-circle mt-1 me-2"
+                                    style="width: 38px; height: 38px; object-fit: cover" />
+                                <div>
+                                    <p class="m-0 text-muted fw-bold p-0">{{blog.user}}</p>
+                                    <span class="text-muted fs-6">{{blog.updated_at | timesince}} ago</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         {% if blog.user == request.user %}
                         <!-- edit -->
                         <i class="fas fa-ellipsis-h" type="button" id="post1Menu" data-bs-toggle="dropdown"
@@ -310,22 +255,22 @@
                         <ul class="dropdown-menu border-0 shadow" aria-labelledby="post1Menu">
                             <li class="d-flex align-items-center">
                                 <a class="
-                            dropdown-item
-                            d-flex
-                            justify-content-around
-                            align-items-center
-                            fs-7
-                          " href="{% url 'blog-edit' blog.id %}">
+                        dropdown-item
+                        d-flex
+                        justify-content-around
+                        align-items-center
+                        fs-7
+                      " href="{% url 'blog-edit' blog.id %}">
                                     Edit Post</a>
                             </li>
                             <li class="d-flex align-items-center">
                                 <a class="
-                            dropdown-item
-                            d-flex
-                            justify-content-around
-                            align-items-center
-                            fs-7
-                          " href="{% url 'blog-delete' blog.id %}">
+                        dropdown-item
+                        d-flex
+                        justify-content-around
+                        align-items-center
+                        fs-7
+                      " href="{% url 'blog-delete' blog.id %}">
                                     Delete Post</a>
                             </li>
                         </ul>
@@ -347,15 +292,14 @@
                         <div class="post__comment mt-3 position-relative">
                             <!-- likes -->
                             <div class="
-                          d-flex
-                          align-items-center
-                          top-0
-                          start-0
-                          position-absolute
-                        " style="height: 50px; z-index: 5">
+                      d-flex
+                      align-items-center
+                      top-0
+                      start-0
+                      position-absolute
+                    " style="height: 50px; z-index: 5">
                                 <div class="me-2">
                                     <i class="text-primary fas fa-thumbs-up"></i>
-
                                 </div>
                                 <p class="m-0 text-muted fs-7 like_count{{blog.id}}">{{ blog.get_likes_count}}</p>
                             </div>
@@ -365,14 +309,14 @@
                                     <!-- comment collapse -->
                                     <h2 class="accordion-header" id="headingTwo">
                                         <div class="
-                                            view_comment
-                                accordion-button
-                                collapsed
-                                pointer
-                                d-flex
-                                justify-content-end
-                              " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}"
-                                            aria-expanded="false" aria-controls="collapsePost{{blog.id}}">
+                                        view_comment
+                            accordion-button
+                            collapsed
+                            pointer
+                            d-flex
+                            justify-content-end
+                          " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}" aria-expanded="false"
+                                            aria-controls="collapsePost{{blog.id}}" role="button">
                                             <p class="m-0 comment_count{{blog.id}}">{{blog.blog_comment.all.count}}
                                                 Comments</p>
                                         </div>
@@ -382,16 +326,16 @@
                                     <div class="d-flex justify-content-around">
                                         <div class="like_container">
                                             <div class="like_btn d-flex
-                                                justify-content-center
-                                                align-items-center
-                                                like_btn{{blog.id}}" role="button">
+                                            justify-content-center
+                                            align-items-center
+                                            like_btn{{blog.id}}" role="button">
                                                 {% if request.user in blog.liked_by.all %}
                                                 <i class="fas fa-thumbs-up me-3 text-primary"></i>
-                                                <p class="m-0">Liked</p>
+                                                <p class="m-0 liked_text{{blog.id}}">Liked</p>
                                                 <input type="hidden" name="" class="is_liked" value="True">
                                                 {% else %}
                                                 <i class="fas fa-thumbs-up me-3"></i>
-                                                <p class="m-0">Like</p>
+                                                <p class="m-0 like_text{{blog.id}}">Like</p>
                                                 <input type="hidden" name="" class="is_liked" value="False">
                                                 {% endif %}
 
@@ -400,18 +344,18 @@
 
                                         </div>
                                         <div class="
-                                            view_comment
-                                dropdown-item
-                                rounded
-                                d-flex
-                                justify-content-center
-                                align-items-center
-                                pointer
-                                text-muted
-                                
-                                w-50
-                              " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}"
-                                            aria-expanded="false" aria-controls="collapsePost{{blog.id}}" role="button">
+                                        view_comment
+                            dropdown-item
+                            rounded
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                            pointer
+                            text-muted
+                            
+                            w-50
+                          " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}" aria-expanded="false"
+                                            aria-controls="collapsePost{{blog.id}}" role="button">
                                             <i class="fas fa-comment-alt me-3"></i>
                                             <p class="m-0">Comment</p>
                                         </div>
@@ -428,10 +372,10 @@
                                                     <div>
                                                         <img src="{{request.user.profile_pic.url}}" alt="avatar"
                                                             class="rounded-circle me-2" style="
-                               width: 38px;
-                               height: 38px;
-                               object-fit: cover;
-                             " />
+                                  width: 38px;
+                                  height: 38px;
+                                  object-fit: cover;
+                                " />
                                                     </div>
                                                     {% csrf_token %}
                                                     <!-- input -->
@@ -452,7 +396,7 @@
                                                 {% for comment in blog.blog_comment.all%}
                                                 <!-- comment 1 -->
                                                 <hr>
-                                                <div class="d-flex align-items-center my-1 px-lg-3">
+                                                <div class="d-flex align-items-center my-lg-1 px-lg-3">
                                                     <!-- avatar -->
                                                     <img src="{{comment.user.profile_pic.url}}" alt="avatar"
                                                         class="rounded-circle me-2" style="
@@ -461,7 +405,7 @@
                                 object-fit: cover;
                               " />
                                                     <!-- comment text -->
-                                                    <div class="p-3 rounded comment__input w-100">
+                                                    <div class="p-lg-3 rounded comment__input w-100">
                                                         {% if comment.user == request.user%}
                                                         <!-- comment menu of author -->
                                                         <div class="d-flex justify-content-end">
@@ -521,7 +465,12 @@
                         </div>
                     </div>
                 </div>
+
+
                 {% endfor%}
+                {% else %}
+                <h1 class="text-muted text-center mt-5">No Blog</h1>
+                {% endif %}
 
             </div>
         </div>

@@ -54,6 +54,67 @@
 
             <!-- menus -->
             <div class="col d-flex align-items-center justify-content-end">
+
+                <!-- group -->
+                <div class="mx-4 nav__btn suggestion_contaner">
+                    <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#suggestion">
+                        <i type="button" class="position-relative fas fa-users text-muted fs-4">
+
+                        </i>
+                    </button>
+                    <!-- create modal -->
+                    <div class="modal fade mt-5" id="suggestion" tabindex="-1" aria-labelledby="suggestionLabel"
+                        aria-hidden="true" data-bs-backdrop="false">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content mb-5">
+                                <!-- head -->
+                                <div class="modal-header align-items-center">
+                                    <h5 class="text-dark text-center w-100 m-0" id="exampleModalLabel">
+                                        Suggestions
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <!-- body -->
+                                <div class="modal-body">
+                                    <div class="p-3 mt-4 mb-5">
+                                        <!-- suggestions -->
+
+
+                                        {% for user in request.user.user_profile.get_suggestions %}
+                                        <!-- s 1 -->
+                                        <li class="dropdown-item my-2 d-flex justify-content-between">
+                                            <!-- img -->
+                                            <a href="{% url 'other-profile' user.id %}" class="
+                                        d-flex
+                                        align-items-center
+                                        text-decoration-none
+                                        link-dark
+                                      ">
+                                                <img src="{{user.profile_pic.url}}" alt="ads"
+                                                    style="width: 100px; height: 100px; object-fit: cover"
+                                                    class="rounded me-3" />
+                                                <div class="follow_container ms-3">
+                                                    <p class="mb-3">{{user}}</p>
+                                                    {% csrf_token %}
+                                                    <input class="follow_user_id" type="hidden" name=""
+                                                        value="{{user.id}}">
+                                                    <button
+                                                        class="btn btn-primary follow_btn followed{{user.id}}">Follow</button>
+                                                </div>
+
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </div>
+
+                                    <!-- end -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- avatar -->
                 <div class="align-items-center justify-content-center d-none d-xl-flex">
                     <img src="{{request.user.profile_pic.url}}" class="rounded-circle me-2" alt="avatar"

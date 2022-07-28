@@ -53,6 +53,7 @@ $(document).ready(function () {
                 $('.comment_input').val(data.comment);
                 $(".add_comment").addClass("d-none");
                 $(".edit_comment_btn").removeClass("d-none");
+
             }
         })
 
@@ -91,7 +92,6 @@ $(document).ready(function () {
         e.preventDefault();
         var comment_id = $(this).closest('.edit_comment_container').find('.comment_id').val();
         var blog_id = $(this).closest('.edit_comment_container').find('.blog_id').val();
-        console.log('bloggg', blog_id)
 
         $.ajax({
             method: 'GET',
@@ -108,16 +108,16 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.like_btn', function (e) {
-        console.log('likessssss')
         e.preventDefault();
+
 
         var is_liked = $(this).closest('.like_container').find('.is_liked').val();
         console.log('like_text', is_liked)
         if (is_liked === 'True') {
             var token = $('input[name=csrfmiddlewaretoken]').val()
             var blog_id = $(this).closest('.like_container').find('.blog_id').val();
-            console.log('blog', blog_id)
-            console.log('blog', token)
+            $('.like_btn' + blog_id).addClass("spinner-border");
+
             $.ajax({
                 method: 'POST',
                 url: '/blog/unlike/',
@@ -130,6 +130,7 @@ $(document).ready(function () {
                 success: function (data) {
                     $('.like_btn' + blog_id).load(location.href + " .like_btn" + blog_id);
                     $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
+                    $('.like_btn' + blog_id).removeClass("spinner-border");
 
 
 
@@ -141,8 +142,7 @@ $(document).ready(function () {
         else {
             var token = $('input[name=csrfmiddlewaretoken]').val()
             var blog_id = $(this).closest('.like_container').find('.blog_id').val();
-            console.log('blog', blog_id)
-            console.log('blog', token)
+            $('.like_btn' + blog_id).addClass("spinner-border");
             $.ajax({
                 method: 'POST',
                 url: '/blog/like/',
@@ -155,6 +155,7 @@ $(document).ready(function () {
                 success: function (data) {
                     $('.like_btn' + blog_id).load(location.href + " .like_btn" + blog_id);
                     $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
+                    $('.like_btn' + blog_id).removeClass("spinner-border");
 
                 }
             })
@@ -171,6 +172,7 @@ $(document).ready(function () {
         var follow_user_id = $(this).closest('.follow_container').find('.follow_user_id').val();
         console.log('like_text', follow_user_id)
         var token = $('input[name=csrfmiddlewaretoken]').val()
+        $(this).replaceWith('<span class="spinner-grow" id="remove-follower-spinner" role="status" aria-hidden="true"></span>');
         $.ajax({
             method: 'POST',
             url: '/user/follow/',
@@ -180,8 +182,8 @@ $(document).ready(function () {
 
             },
             success: function (data) {
-                $('.followed' + follow_user_id).html('Followed');
-                $('.following_count').load(location.href + ' .following_count');
+                $('#remove-follower-spinner').replaceWith('<button class="btn btn-primary unfollow_btn following{{user.id}}">Followed</button>');
+                $('.refresh-follwing').load(location.href + ' .refresh-follwing');
             }
         })
     })
@@ -195,6 +197,8 @@ $(document).ready(function () {
         var follower_user_id = $(this).closest('.follower_container').find('.follower_user_id').val();
         console.log('like_text', follower_user_id)
         var token = $('input[name=csrfmiddlewaretoken]').val()
+        $(this).replaceWith('<span class="spinner-grow" id="remove-follower-spinner" role="status" aria-hidden="true"></span>');
+
         $.ajax({
             method: 'POST',
             url: '/user/remove-follower/',
@@ -204,8 +208,9 @@ $(document).ready(function () {
 
             },
             success: function (data) {
-                $('.follower' + follower_user_id).html('Removed');
+                $('#remove-follower-spinner').replaceWith('<button class="btn btn-secondary unfollow_btn following{{user.id}}">Removed</button>');
                 $('.followers_count').load(location.href + ' .followers_count');
+
             }
         })
     })
@@ -218,6 +223,8 @@ $(document).ready(function () {
 
         var following_user_id = $(this).closest('.following_container').find('.following_user_id').val();
         var token = $('input[name=csrfmiddlewaretoken]').val()
+        $(this).replaceWith('<span class="spinner-grow" id="unfollow-spinner" role="status" aria-hidden="true"></span>');
+
         $.ajax({
             method: 'POST',
             url: '/user/unfollow/',
@@ -227,8 +234,9 @@ $(document).ready(function () {
 
             },
             success: function (data) {
-                $('.following' + following_user_id).html('Removed');
+                $('#unfollow-spinner').replaceWith('<button class="btn btn-secondary unfollow_btn following{{user.id}}">Removed</button>');
                 $('.following_count').load(location.href + ' .following_count');
+                $('.suggestion_contaner').load(location.href + ' .suggestion_contaner');
             }
         })
     })
