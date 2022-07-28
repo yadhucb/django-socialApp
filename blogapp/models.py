@@ -70,12 +70,15 @@ class Blogs(models.Model):
 
     )
     related_language =  models.CharField(max_length=12, choices=LANGUAGE_CHOICES, null=True, blank=True)
-    title = models.CharField(max_length=120)
-    description = models.TextField(null=True, blank=True)
+    title = models.CharField(max_length=120, null=True, blank=True)
+    description = models.TextField()
     image = models.ImageField(upload_to='blog_images',null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     liked_by = models.ManyToManyField(User)
+
+    class Meta:
+        ordering = ['-updated_at']
 
     @property
     def get_liked_users(self):
@@ -86,7 +89,7 @@ class Blogs(models.Model):
         return self.get_liked_users.count()
 
     def __str__(self):
-        return self.title
+        return self.description[:10]
 
 class Comments(models.Model):
     

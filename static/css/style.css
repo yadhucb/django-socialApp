@@ -103,4 +103,13 @@ html {
     .row {
         --bs-gutter-x: 0;
     }
+
+    .container-fluid {
+        --bs-gutter-x: 0;
+    }
+
+    .dropdown-menu {
+        z-index: 50;
+        overflow-y: auto;
+    }
 }

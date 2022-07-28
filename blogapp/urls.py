@@ -20,6 +20,7 @@ urlpatterns = [
 
     path('user/profile', views.MyProfileView.as_view(), name='my-profile'),
     path('user/profile-add/', views.ProfileAddView.as_view(), name='profile-add'),
+    path('user/profile-edit/', views.ProfileEditView.as_view(), name='profile-edit'),
     path('other/profile/<str:user_id>', views.otherProfileView, name='other-profile'),
 
 

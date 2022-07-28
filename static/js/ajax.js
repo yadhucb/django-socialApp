@@ -107,6 +107,8 @@ $(document).ready(function () {
         })
     })
 
+    // =========== like ===========
+
     $(document).on('click', '.like_btn', function (e) {
         e.preventDefault();
 
@@ -116,7 +118,7 @@ $(document).ready(function () {
         if (is_liked === 'True') {
             var token = $('input[name=csrfmiddlewaretoken]').val()
             var blog_id = $(this).closest('.like_container').find('.blog_id').val();
-            $('.like_btn' + blog_id).addClass("spinner-border");
+            $(this).replaceWith('<span class="spinner-grow" id="unlike-spinner" role="status" aria-hidden="true"></span>');
 
             $.ajax({
                 method: 'POST',
@@ -128,11 +130,9 @@ $(document).ready(function () {
 
                 },
                 success: function (data) {
-                    $('.like_btn' + blog_id).load(location.href + " .like_btn" + blog_id);
+                    $('#unlike-spinner').replaceWith('<div class="like_btn d-flex justify-content-center align-items-center" role="button"><i class="fas fa-thumbs-up me-3 text-primary"></i><p class="m-0 liked_text{{blog.id}}">Like</p><input type="hidden" name="" class="is_liked" value="True"></div>');
+                    $('.like_container' + blog_id).load(location.href + " .like_container" + blog_id);
                     $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
-                    $('.like_btn' + blog_id).removeClass("spinner-border");
-
-
 
                 }
             })
@@ -142,7 +142,7 @@ $(document).ready(function () {
         else {
             var token = $('input[name=csrfmiddlewaretoken]').val()
             var blog_id = $(this).closest('.like_container').find('.blog_id').val();
-            $('.like_btn' + blog_id).addClass("spinner-border");
+            $(this).replaceWith('<span class="spinner-grow" id="like-spinner" role="status" aria-hidden="true"></span>');
             $.ajax({
                 method: 'POST',
                 url: '/blog/like/',
@@ -153,9 +153,10 @@ $(document).ready(function () {
 
                 },
                 success: function (data) {
-                    $('.like_btn' + blog_id).load(location.href + " .like_btn" + blog_id);
+                    $('#like-spinner').replaceWith('<div class="like_btn d-flex justify-content-center align-items-center" role="button"><i class="fas fa-thumbs-up me-3 text-primary"></i><p class="m-0 liked_text{{blog.id}}">Liked</p><input type="hidden" name="" class="is_liked" value="True"></div>');
+
+                    $('.like_container' + blog_id).load(location.href + " .like_container" + blog_id);
                     $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
-                    $('.like_btn' + blog_id).removeClass("spinner-border");
 
                 }
             })

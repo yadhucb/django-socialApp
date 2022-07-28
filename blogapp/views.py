@@ -234,29 +234,31 @@ class MyProfileView(View):
  
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class ProfileAddView(CreateView):
-    try:
-        def get(self, request):
-            profile = UserProfile.objects.get(user = request.user)
-            form = ProfileForm(instance=profile)
-            return render(request, 'profile_add.html', {'form' : form})
-        
-        def post(self, request):
-            profile = UserProfile.objects.get(user = request.user)
-            form = ProfileForm(request.POST, instance=profile)
-            if form.is_valid():
-                form.save()
-                return render(request, 'my_profile.html')
-    except:
-        form_class = ProfileForm
-        template_name = 'profile_add.html'
-        model = UserProfile
-        success_url = reverse_lazy('my-profile')
+   
+    form_class = ProfileForm
+    template_name = 'profile_add.html'
+    model = UserProfile
+    success_url = reverse_lazy('my-profile')
 
-        def form_valid(self, form):
-            form.instance.user = self.request.user
-            self.object = form.save()
-            messages.success(self.request,'post updated')
-            return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        self.object = form.save()
+        messages.success(self.request,'post updated')
+        return super().form_valid(form)
+
+@method_decorator(login_required(login_url='signin'), name='dispatch')
+class ProfileEditView(View):
+    def get(self, request):
+        profile = UserProfile.objects.get(user = request.user)
+        form = ProfileForm(instance=profile)
+        return render(request, 'profile_add.html', {'form' : form})
+    
+    def post(self, request):
+        profile = UserProfile.objects.get(user = request.user)
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return render(request, 'my_profile.html')
 
 @login_required(login_url='signin')
 def otherProfileView(request, *args, **kwargs):
