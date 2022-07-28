@@ -31,6 +31,81 @@ $(document).ready(function () {
         }
     })
 
+    // =========== edit comment ====================
+
+    // =========== get edit comment ====================
+
+    $(document).on('click', '.edit_comment', function (e) {
+        console.log('clickkkkks')
+        e.preventDefault();
+
+        var comment_id = $(this).closest('.edit_comment_container').find('.comment_id').val();
+
+        $.ajax({
+            method: 'GET',
+            url: '/blog/edit-comment/',
+            data: {
+
+                'comment_id': comment_id
+
+            },
+            success: function (data) {
+                $('.comment_input').val(data.comment);
+                $(".add_comment").addClass("d-none");
+                $(".edit_comment_btn").removeClass("d-none");
+            }
+        })
+
+    })
+
+    // =========== post edit comment ===========
+    $(document).on('click', '.edit_comment_btn', function (e) {
+        e.preventDefault();
+        var blog_id = $(this).closest('.comment').find('.blog_id').val();
+        var comment = $(this).closest('.comment').find('.comment_input').val();
+        console.log('bloggg111', blog_id)
+        if (comment != '') {
+            var token = $('input[name=csrfmiddlewaretoken]').val()
+
+            $.ajax({
+                method: 'POST',
+                url: '/blog/edit-comment/',
+                data: {
+                    'comment': comment,
+                    csrfmiddlewaretoken: token
+
+                },
+                success: function (data) {
+                    $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
+                    $(".add_comment").removeClass("d-none");
+                    $(".edit_comment_btn").addClass("d-none");
+                    document.getElementById("commentForm" + blog_id).reset();
+
+                }
+            })
+        }
+    })
+
+    // =========== delete comment ===========
+    $(document).on('click', '.delete_comment', function (e) {
+        e.preventDefault();
+        var comment_id = $(this).closest('.edit_comment_container').find('.comment_id').val();
+        var blog_id = $(this).closest('.edit_comment_container').find('.blog_id').val();
+
+        $.ajax({
+            method: 'GET',
+            url: '/blog/delete-comment/',
+            data: {
+                'comment_id': comment_id,
+
+            },
+            success: function (data) {
+                $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
+                $('.comment_count' + blog_id).load(location.href + " .comment_count" + blog_id);
+            }
+        })
+    })
+
     $(document).on('click', '.like_btn', function (e) {
         console.log('likessssss')
         e.preventDefault();

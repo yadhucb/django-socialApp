@@ -26,9 +26,11 @@
                                 <span class="text-muted fs-7">{{blog.updated_at | timesince}}</span>
                             </div>
                         </div>
+                        {% if blog.user == request.user %}
                         <!-- edit -->
                         <i class="fas fa-ellipsis-h" type="button" id="post1Menu" data-bs-toggle="dropdown"
                             aria-expanded="false"></i>
+
                         <!-- edit menu -->
                         <ul class="dropdown-menu border-0 shadow" aria-labelledby="post1Menu">
                             <li class="d-flex align-items-center">
@@ -38,7 +40,7 @@
                             justify-content-around
                             align-items-center
                             fs-7
-                          " href="#">
+                          " href="{% url 'blog-edit' blog.id %}">
                                     Edit Post</a>
                             </li>
                             <li class="d-flex align-items-center">
@@ -48,10 +50,11 @@
                             justify-content-around
                             align-items-center
                             fs-7
-                          " href="#">
+                          " href="{% url 'blog-delete' blog.id %}">
                                     Delete Post</a>
                             </li>
                         </ul>
+                        {% endif %}
                     </div>
                     <!-- post content -->
                     <div class="mt-3">

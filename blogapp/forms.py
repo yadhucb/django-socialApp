@@ -40,10 +40,19 @@ class BlogsForm(forms.ModelForm):
     class Meta:
         model=Blogs
         fields=[
+            'related_language',
             'title',
             'description',
             'image',
         ]
+
+        widgets = {
+            'related_language' : forms.Select(attrs={'class' : 'form-control', 'placeholder' :'Bio'}),
+            'title' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' :'Bio'}) ,
+            'description' :forms.Textarea(attrs={'class' : 'form-control', 'placeholder' :'Bio'}),
+            'image' : forms.FileInput(attrs={'class' : 'form-control', 'placeholder' :'Bio'})
+
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:

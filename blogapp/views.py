@@ -29,15 +29,54 @@ class HomeView(CreateView):
         context['blogs'] = blogs
         comment_form = CommentForm()
         context['comment_form'] = comment_form
+        
         return context
+
+class BlogEditView(View):
+
+    def get(self, request, *args, **kwargs):
+        blog_id = kwargs.get('id')
+        blog = Blogs.objects.get(id = blog_id)
+        context = {
+        'form' : BlogsForm(instance=blog)
+        }
+
+        return render(request, 'blog_edit.html', context)
+
+    def post(self, request, *args, **kwargs):
+        blog_id = kwargs.get('id')
+        blog = Blogs.objects.get(id = blog_id)
+        form = BlogsForm(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+def blogDeleteView(request, *args, **kwargs):
+    blog_id = kwargs.get('id')
+    blog = Blogs.objects.get(id = blog_id)
+    blog.delete()
+    return redirect('home')
+
 
 def searchBlogView(request):
     search_input = request.GET.get('search-input')
     blogs = Blogs.objects.filter(
         Q(title__icontains = search_input) | 
         Q(description__icontains = search_input) | 
-        Q(user__username__icontains = search_input))
+        Q(user__username__icontains = search_input) |
+        Q(related_language__icontains = search_input)).order_by('-updated_at')
     return render(request, 'search.html', {'blogs' : blogs})
+
+def filterByLanguageView(request, *args, **kwargs):
+    language = kwargs.get('slug')
+    blogs = Blogs.objects.filter(related_language__iexact = language)
+    context = {
+        'blogs' : blogs,
+        'comment_form' : CommentForm(),
+        'no_blog_post' : True
+    }
+    return render(request, 'home.html', context)
+
 
 def addcommentView(request,*args,**kwargs):
     if request.method =='POST':
@@ -51,6 +90,7 @@ def addcommentView(request,*args,**kwargs):
             comment = comment)
         messages.success(request,'comment added successfully')
         return JsonResponse({'suucess' : 'comment added'})
+
 
 def likeView(request):
     if request.method == 'POST':

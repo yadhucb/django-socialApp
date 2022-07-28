@@ -7,6 +7,10 @@ a {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
+.accordion-body {
+    padding: 0;
+}
+
 
 
 
@@ -68,8 +72,8 @@ button.liked i {
 }
 
 html {
-    --scrollbarBG: #eee4ee;
-    --thumbBG: #87cce7;
+    --scrollbarBG: #fff;
+    --thumbBG: #fff;
 }
 
 .scrollbar::-webkit-scrollbar {

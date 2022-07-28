@@ -53,7 +53,7 @@ class UserProfile(models.Model):
 class Blogs(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_blog')
     LANGUAGE_CHOICES = (
-        ('Other', 'Other'),
+        
         ('Python', 'Python'),
         ('Java', 'Java'),
         ('Ruby', 'Ruby'),
@@ -65,9 +65,11 @@ class Blogs(models.Model):
         ('PHP','PHP'),
         ('SQL','SQL'),
        ('Swift','Swift'),
+       ('Other', 'Other'),
+       
 
     )
-    related_language =  models.CharField(max_length=12, choices=LANGUAGE_CHOICES, null=True)
+    related_language =  models.CharField(max_length=12, choices=LANGUAGE_CHOICES, null=True, blank=True)
     title = models.CharField(max_length=120)
     description = models.TextField()
     image = models.ImageField(upload_to='blog_images',null=True, blank=True)
@@ -87,9 +89,15 @@ class Blogs(models.Model):
         return self.title
 
 class Comments(models.Model):
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blogs, on_delete=models.CASCADE, related_name='blog_comment')
     comment = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-updated_at']
     
     def __str__(self):
         return self.comment
