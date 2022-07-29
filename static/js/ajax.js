@@ -3,9 +3,7 @@ $(document).ready(function () {
     // =========== add comment ====================
 
     $('.add_comment').click(function (e) {
-        console.log('clickkkkks')
         e.preventDefault();
-
         var comment = $(this).closest('.comment').find('.comment_input').val();
         if (comment != '') {
             var token = $('input[name=csrfmiddlewaretoken]').val()
@@ -19,44 +17,35 @@ $(document).ready(function () {
                     'comment': comment,
                     'blog_id': blog_id,
                     csrfmiddlewaretoken: token
-
                 },
                 success: function (data) {
                     $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
                     $('.comment_count' + blog_id).load(location.href + " .comment_count" + blog_id);
                     document.getElementById("commentForm" + blog_id).reset();
-
                 }
             })
         }
     })
 
-    // =========== edit comment ====================
+    // ===================== edit comment ====================
 
     // =========== get edit comment ====================
 
     $(document).on('click', '.edit_comment', function (e) {
-        console.log('clickkkkks')
         e.preventDefault();
-
         var comment_id = $(this).closest('.edit_comment_container').find('.comment_id').val();
-
         $.ajax({
             method: 'GET',
             url: '/blog/edit-comment/',
             data: {
-
                 'comment_id': comment_id
-
             },
             success: function (data) {
                 $('.comment_input').val(data.comment);
                 $(".add_comment").addClass("d-none");
                 $(".edit_comment_btn").removeClass("d-none");
-
             }
         })
-
     })
 
     // =========== post edit comment ===========
@@ -64,7 +53,6 @@ $(document).ready(function () {
         e.preventDefault();
         var blog_id = $(this).closest('.comment').find('.blog_id').val();
         var comment = $(this).closest('.comment').find('.comment_input').val();
-        console.log('bloggg111', blog_id)
         if (comment != '') {
             var token = $('input[name=csrfmiddlewaretoken]').val()
 
@@ -74,14 +62,12 @@ $(document).ready(function () {
                 data: {
                     'comment': comment,
                     csrfmiddlewaretoken: token
-
                 },
                 success: function (data) {
                     $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
                     $(".add_comment").removeClass("d-none");
                     $(".edit_comment_btn").addClass("d-none");
                     document.getElementById("commentForm" + blog_id).reset();
-
                 }
             })
         }
@@ -98,7 +84,6 @@ $(document).ready(function () {
             url: '/blog/delete-comment/',
             data: {
                 'comment_id': comment_id,
-
             },
             success: function (data) {
                 $('.comment_body' + blog_id).load(location.href + " .comment_body" + blog_id);
@@ -111,10 +96,8 @@ $(document).ready(function () {
 
     $(document).on('click', '.like_btn', function (e) {
         e.preventDefault();
-
-
         var is_liked = $(this).closest('.like_container').find('.is_liked').val();
-        console.log('like_text', is_liked)
+
         if (is_liked === 'True') {
             var token = $('input[name=csrfmiddlewaretoken]').val()
             var blog_id = $(this).closest('.like_container').find('.blog_id').val();
@@ -127,22 +110,20 @@ $(document).ready(function () {
                     'is_liked': is_liked,
                     'blog_id': blog_id,
                     csrfmiddlewaretoken: token
-
                 },
                 success: function (data) {
-                    $('#unlike-spinner').replaceWith('<div class="like_btn d-flex justify-content-center align-items-center" role="button"><i class="fas fa-thumbs-up me-3 text-primary"></i><p class="m-0 liked_text{{blog.id}}">Like</p><input type="hidden" name="" class="is_liked" value="True"></div>');
                     $('.like_container' + blog_id).load(location.href + " .like_container" + blog_id);
                     $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
-
+                    $('#unlike-spinner').replaceWith('<i class="fas fa-heart fs-3 me-3 text-muted"></i>');
                 }
             })
-
         }
 
         else {
             var token = $('input[name=csrfmiddlewaretoken]').val()
             var blog_id = $(this).closest('.like_container').find('.blog_id').val();
             $(this).replaceWith('<span class="spinner-grow" id="like-spinner" role="status" aria-hidden="true"></span>');
+
             $.ajax({
                 method: 'POST',
                 url: '/blog/like/',
@@ -150,41 +131,35 @@ $(document).ready(function () {
                     'is_liked': is_liked,
                     'blog_id': blog_id,
                     csrfmiddlewaretoken: token
-
                 },
                 success: function (data) {
-                    $('#like-spinner').replaceWith('<div class="like_btn d-flex justify-content-center align-items-center" role="button"><i class="fas fa-thumbs-up me-3 text-primary"></i><p class="m-0 liked_text{{blog.id}}">Liked</p><input type="hidden" name="" class="is_liked" value="True"></div>');
-
                     $('.like_container' + blog_id).load(location.href + " .like_container" + blog_id);
                     $('.like_count' + blog_id).load(location.href + " .like_count" + blog_id);
-
+                    $('#like-spinner').replaceWith(' <i class="fas fa-heart fs-3 me-3"style="color: rgb(255, 40, 40);">');
                 }
             })
-
         }
     })
 
     // =========== follow ============
 
     $(document).on('click', '.follow_btn', function (e) {
-        console.log('foloowwww')
         e.preventDefault();
-
         var follow_user_id = $(this).closest('.follow_container').find('.follow_user_id').val();
         console.log('like_text', follow_user_id)
         var token = $('input[name=csrfmiddlewaretoken]').val()
         $(this).replaceWith('<span class="spinner-grow" id="remove-follower-spinner" role="status" aria-hidden="true"></span>');
+
         $.ajax({
             method: 'POST',
             url: '/user/follow/',
             data: {
                 'follow_user_id': follow_user_id,
                 csrfmiddlewaretoken: token
-
             },
             success: function (data) {
                 $('#remove-follower-spinner').replaceWith('<button class="btn btn-primary unfollow_btn following{{user.id}}">Followed</button>');
-                $('.refresh-follwing').load(location.href + ' .refresh-follwing');
+                $('.refresh_following').load(location.href + ' .refresh_following');
             }
         })
     })
@@ -192,9 +167,7 @@ $(document).ready(function () {
     // ======== remove follower ==========
 
     $(document).on('click', '.remove_follower_btn', function (e) {
-        console.log('foloowwww')
         e.preventDefault();
-
         var follower_user_id = $(this).closest('.follower_container').find('.follower_user_id').val();
         console.log('like_text', follower_user_id)
         var token = $('input[name=csrfmiddlewaretoken]').val()
@@ -206,12 +179,10 @@ $(document).ready(function () {
             data: {
                 'follower_user_id': follower_user_id,
                 csrfmiddlewaretoken: token
-
             },
             success: function (data) {
                 $('#remove-follower-spinner').replaceWith('<button class="btn btn-secondary unfollow_btn following{{user.id}}">Removed</button>');
                 $('.followers_count').load(location.href + ' .followers_count');
-
             }
         })
     })
@@ -219,9 +190,7 @@ $(document).ready(function () {
     // ======== unfollow ==========
 
     $(document).on('click', '.unfollow_btn', function (e) {
-        console.log('foloowwww')
         e.preventDefault();
-
         var following_user_id = $(this).closest('.following_container').find('.following_user_id').val();
         var token = $('input[name=csrfmiddlewaretoken]').val()
         $(this).replaceWith('<span class="spinner-grow" id="unfollow-spinner" role="status" aria-hidden="true"></span>');
@@ -232,7 +201,6 @@ $(document).ready(function () {
             data: {
                 'following_user_id': following_user_id,
                 csrfmiddlewaretoken: token
-
             },
             success: function (data) {
                 $('#unfollow-spinner').replaceWith('<button class="btn btn-secondary unfollow_btn following{{user.id}}">Removed</button>');

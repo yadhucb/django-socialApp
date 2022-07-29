@@ -2,259 +2,18 @@
 
 {% block content %}
 
-<!-- ================= Main ================= -->
+<!-- ================= Home ================= -->
 <div class="container-fluid">
     <div class="row d-flex">
-        <!-- ================= Sidebar ================= -->
+        <!-- ================= Left bar ================= -->
         <div class="col-lg-3">
-            <div class="d-none d-lg-block h-100 scrollbar" style="position: fixed; top: 0; width: 15%;">
-                <ul class="navbar-nav mt-4 ms-3 d-flex flex-column mb-5" style="padding-top: 56px">
-                    <!-- top -->
-                    <!-- avatar -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'my-profile' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">{{request.user}}</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- all-->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'home'  %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://miro.medium.com/max/800/1*wcEYa9AjnMZxXAau2iuhYw.png" alt="from fb"
-                                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">All</p>
-                            </div>
-                        </a>
-                    </li>
-                    </li>
-                    <!-- python-->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'python' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://sonhasoftware.com/wp-content/uploads/2021/07/python.png" alt="from fb"
-                                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">Python</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- java -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'java' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">Java</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- ruby -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'ruby' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://w7.pngwing.com/pngs/535/618/png-transparent-ruby-on-rails-computer-programming-programming-language-ruby-angle-rectangle-logo.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">Ruby</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- html -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'html' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">HTML</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- javascript -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'javascript' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://img.favpng.com/4/8/18/javascript-programmer-programming-language-computer-programming-png-favpng-NuubdcGBYPwiVGTWJyGLVJrTP.jpg"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">JavaScript</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- c -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'c' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/695px-C_Programming_Language.svg.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">C</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- c++ -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'c++' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">C++</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- c# -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'c#' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://geeks4learning-elearning.com/pluginfile.php/10043/course/section/2489/C%23.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">C#</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- php -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'php' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://www.codeserk.es/media/md/6ea41ce165a1e149c6d3eaec5f14a9f2.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">PHP</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- sql -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'sql' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://img.favpng.com/16/0/21/sql-server-logo-png-favpng-pXyDxFrAFhWQUeLq6SrgeND1g.jpg"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">SQL</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- swift -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'swift' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://e7.pngegg.com/pngimages/262/885/png-clipart-swift-programming-language-apple-natural-ecological-food-logo-templates-angle-orange.png"
-                                    alt="from fb" class="rounded-circle"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">Swift</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- others -->
-                    <li class="dropdown-item p-1 rounded">
-                        <a href="{% url 'language' 'others' %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none text-dark
-                  ">
-                            <div class="p-2">
-                                <img src="https://icon-library.com/images/others-icon/others-icon-13.jpg" alt="from fb"
-                                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
-                            </div>
-                            <div>
-                                <p class="m-0">Others</p>
-                            </div>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </div>
+            {% include 'includes/leftbar.html' %}
         </div>
-        <!-- ================= Timeline ================= -->
+        <!-- ================= Feeds ================= -->
         <div class="col-12 col-lg-6 p-0 pb-5 pe-lg-5" style="z-index: 10;">
             <div class="d-flex flex-column justify-content-center w-100 mx-auto" style="padding-top: 56px;">
                 {% if not no_blog_post %}
-                <!-- create post -->
+                <!--===== add post =======-->
                 <div class="bg-white p-3 mt-3 rounded border shadow">
                     <!-- avatar -->
                     <div class="d-flex" type="button">
@@ -264,17 +23,17 @@
                         </div>
                         <input type="text" class="form-control rounded-pill border-0 bg-gray pointer" disabled
                             placeholder="What's on your mind, {{request.user}}?" data-bs-toggle="modal"
-                            data-bs-target="#createModal" />
+                            data-bs-target="#addModal" />
                     </div>
-                    <!-- create modal -->
-                    <div class="modal fade mt-5" id="createModal" tabindex="-1" aria-labelledby="createModalLabel"
+                    <!-- add modal -->
+                    <div class="modal fade mt-5" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
                         aria-hidden="true" data-bs-backdrop="false">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content mb-5">
                                 <!-- head -->
                                 <div class="modal-header align-items-center">
                                     <h5 class="text-dark text-center w-100 m-0" id="exampleModalLabel">
-                                        Create Post
+                                        Add Post
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -283,7 +42,7 @@
                                 <div class="modal-body">
                                     <div class="my-1 p-1">
                                         <div class="d-flex flex-column">
-                                            <!-- name -->
+                                            <!-- user -->
                                             <div class="d-flex align-items-center">
                                                 <div class="p-2">
                                                     <img src="{{request.user.profile_pic.url}}" alt="from fb"
@@ -298,12 +57,12 @@
                                             <form action="" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
 
-                                                <!-- text -->
+                                                <!-- Related Language -->
                                                 <div>
                                                     <select name="related_language" class="form-control my-3 "
                                                         id="id_related_language">
-                                                        <option value="" selected="" class="text-muted">Related
-                                                            Language(optional)
+                                                        <option value="" selected="" class="text-muted">
+                                                            Related Language(optional)
                                                         </option>
 
                                                         <option value="Other">Other</option>
@@ -338,48 +97,41 @@
                                                         id="id_description"></textarea>
                                                 </div>
 
-                                                <!-- media -->
+                                                <!-- Photo -->
                                                 <div
                                                     class="d-flex justify-content-between border border-1 border-light rounded p-3 mt-3">
                                                     <div>
                                                         <input type="file" name="image" accept="image/*" id="id_image"
-                                                            style="opacity: 0;
-                                                    width: 0.1px;
-                                                    height: 0.1px;
-                                                    position: absolute;">
+                                                            style="opacity: 0; width: 0.1px; height: 0.1px; position: absolute;">
                                                         <label for="id_image" class="fs-3">
                                                             <div class="btn btn-warning"> UPLOAD
                                                                 <i class="fas fa-images text-danger pointer mx-1"
                                                                     role="button">
                                                                 </i>
                                                             </div>
-
                                                         </label>
                                                     </div>
                                                 </div>
                                         </div>
                                     </div>
-
                                     <!-- end -->
                                 </div>
                                 <!-- footer -->
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary w-100">
-                                        Post
+                                        POST
                                     </button>
                                 </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 {% endif %}
-                <!-- posts -->
-                <!-- p 1 -->
+                <!--======== posts ========-->
+
                 {% if blogs %}
                 {% for blog in blogs %}
-
                 <div class="bg-white p-4 rounded shadow mt-3">
                     <!-- author -->
                     <div class="d-flex justify-content-between">
@@ -394,6 +146,7 @@
                                 </div>
                             </div>
                         </a>
+
                         {% if blog.user == request.user %}
                         <!-- edit -->
                         <i class="fas fa-ellipsis-h" type="button" id="post1Menu" data-bs-toggle="dropdown"
@@ -401,31 +154,21 @@
                         <!-- edit menu -->
                         <ul class="dropdown-menu border-0 shadow" aria-labelledby="post1Menu">
                             <li class="d-flex align-items-center">
-                                <a class="
-                        dropdown-item
-                        d-flex
-                        justify-content-around
-                        align-items-center
-                        fs-7
-                      " href="{% url 'blog-edit' blog.id %}">
+                                <a class="dropdown-item d-flex justify-content-around align-items-center fs-7"
+                                    href="{% url 'blog-edit' blog.id %}">
                                     Edit Post</a>
                             </li>
                             <li class="d-flex align-items-center">
-                                <a class="
-                        dropdown-item
-                        d-flex
-                        justify-content-around
-                        align-items-center
-                        fs-7
-                      " href="{% url 'blog-delete' blog.id %}">
+                                <a class="dropdown-item d-flex justify-content-around align-items-center fs-7"
+                                    href="{% url 'blog-delete' blog.id %}">
                                     Delete Post</a>
                             </li>
                         </ul>
                         {% endif %}
+
                     </div>
-                    <!-- post content -->
+                    <!--===== post content =======-->
                     <div class="mt-3">
-                        <!-- content -->
                         <div>
                             {% if blog.title %}
                             <h5>{{blog.title}}</h5>
@@ -437,76 +180,50 @@
                             <img src="{{blog.image.url}}" alt="post image" class="img-fluid rounded" />
                             {% endif %}
                         </div>
-                        <!-- likes & comments -->
+                        <!--==== likes & comments =====-->
                         <div class="post__comment mt-3 position-relative">
-                            <!-- likes -->
-                            <div class="
-                      d-flex
-                      align-items-center
-                      top-0
-                      start-0
-                      position-absolute
-                    " style="height: 50px; z-index: 5">
+                            <!--====== likes ======-->
+                            <div class="d-flex align-items-center top-0 start-0 position-absolute"
+                                style="height: 50px; z-index: 5">
                                 <div class="me-2">
-                                    <i class="text-primary fas fa-thumbs-up"></i>
+                                    <i class="fas fa-heart" style="color: rgb(255, 40, 40);"></i>
                                 </div>
                                 <p class="m-0 text-muted fs-7 like_count{{blog.id}}">{{ blog.get_likes_count}}</p>
                             </div>
-                            <!-- comments start-->
+                            <!--==== comments start =====-->
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item border-0">
                                     <!-- comment collapse -->
                                     <h2 class="accordion-header" id="headingTwo">
-                                        <div class="
-                                        view_comment
-                            accordion-button
-                            collapsed
-                            pointer
-                            d-flex
-                            justify-content-end
-                          " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}" aria-expanded="false"
-                                            aria-controls="collapsePost{{blog.id}}" role="button">
+                                        <div class="view_comment accordion-button collapsed pointer d-flex justify-content-end"
+                                            data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}"
+                                            aria-expanded="false" aria-controls="collapsePost{{blog.id}}" role="button">
                                             <p class="m-0 comment_count{{blog.id}}">{{blog.blog_comment.all.count}}
                                                 Comments</p>
                                         </div>
                                     </h2>
                                     <hr />
-                                    <!-- comment & like bar -->
+                                    <!--===== comment & like bar =======-->
                                     <div class="d-flex justify-content-around">
                                         <div class="like_container{{blog.id}} like_container">
-                                            <div class="like_btn d-flex
-                                            justify-content-center
-                                            align-items-center
-                                            like_btn" role="button">
+                                            <div class="like_btn d-flex justify-content-center align-items-center like_btn"
+                                                role="button">
+
                                                 {% if request.user in blog.liked_by.all %}
-                                                <i class="fas fa-thumbs-up me-3 text-primary"></i>
-                                                <p class="m-0 liked_text{{blog.id}}">Liked</p>
+                                                <i class="fas fa-heart fs-3 me-3" style="color: rgb(255, 40, 40);"></i>
                                                 <input type="hidden" name="" class="is_liked" value="True">
                                                 {% else %}
-                                                <i class="fas fa-thumbs-up me-3"></i>
-                                                <p class="m-0 like_text{{blog.id}}">Like</p>
+                                                <i class="fas fa-heart fs-3 me-3 text-muted"></i>
                                                 <input type="hidden" name="" class="is_liked" value="False">
                                                 {% endif %}
 
                                                 <input type="hidden" name="" class="blog_id" value="{{blog.id}}">
                                             </div>
-
                                         </div>
-                                        <div class="
-                                        view_comment
-                            dropdown-item
-                            rounded
-                            d-flex
-                            justify-content-center
-                            align-items-center
-                            pointer
-                            text-muted
-                            
-                            w-50
-                          " data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}" aria-expanded="false"
-                                            aria-controls="collapsePost{{blog.id}}" role="button">
-                                            <i class="fas fa-comment-alt me-3"></i>
-                                            <p class="m-0">Comment</p>
+                                        <div class="ms-3 view_comment dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted w-50"
+                                            data-bs-toggle="collapse" data-bs-target="#collapsePost{{blog.id}}"
+                                            aria-expanded="false" aria-controls="collapsePost{{blog.id}}" role="button">
+                                            <i class="fas fa-comment fs-3 me-3"></i>
                                         </div>
                                     </div>
                                     <!-- comment expand -->
@@ -520,14 +237,11 @@
                                                     <!-- avatar -->
                                                     <div>
                                                         <img src="{{request.user.profile_pic.url}}" alt="avatar"
-                                                            class="rounded-circle me-2" style="
-                                  width: 38px;
-                                  height: 38px;
-                                  object-fit: cover;
-                                " />
+                                                            class="rounded-circle me-2"
+                                                            style="width: 38px; height: 38px; object-fit: cover;" />
                                                     </div>
                                                     {% csrf_token %}
-                                                    <!-- input -->
+                                                    <!--=========== comment input ======-->
                                                     <input type="hidden" name="blog_id" class="blog_id"
                                                         value="{{blog.id}}">
                                                     <input type="text"
@@ -537,22 +251,20 @@
                                                         role="button">ADD</span>
                                                     <span class="btn btn-warning ms-2 edit_comment_btn d-none"
                                                         role="button">EDIT</span>
-
                                                 </div>
                                             </form>
                                             <!-- end -->
+
+                                            <!--==== comments ======-->
                                             <div class="comment_body{{blog.id}}">
+
                                                 {% for comment in blog.blog_comment.all%}
-                                                <!-- comment 1 -->
                                                 <hr>
                                                 <div class="d-flex align-items-center my-lg-1 px-lg-3">
                                                     <!-- avatar -->
                                                     <img src="{{comment.user.profile_pic.url}}" alt="avatar"
-                                                        class="rounded-circle me-2" style="
-                                width: 38px;
-                                height: 38px;
-                                object-fit: cover;
-                              " />
+                                                        class="rounded-circle me-2"
+                                                        style=" width: 38px; height: 38px; object-fit: cover;" />
                                                     <!-- comment text -->
                                                     <div class="p-lg-3 rounded comment__input w-100">
                                                         {% if comment.user == request.user%}
@@ -566,23 +278,13 @@
                                                             <ul class="dropdown-menu border-0 shadow edit_comment_container"
                                                                 aria-labelledby="post1CommentMenuButton">
                                                                 <li class="d-flex align-items-center">
-                                                                    <a class="edit_comment
-                                        dropdown-item
-                                        d-flex
-                                        justify-content-around
-                                        align-items-center
-                                        fs-7
-                                      " href="#">
+                                                                    <a class="edit_comment dropdown-item d-flex justify-content-around align-items-center fs-7"
+                                                                        href="#">
                                                                         Edit Comment</a>
                                                                 </li>
                                                                 <li class="d-flex align-items-center">
-                                                                    <a class="delete_comment
-                                        dropdown-item
-                                        d-flex
-                                        justify-content-around
-                                        align-items-center
-                                        fs-7
-                                      " href="#">
+                                                                    <a class="delete_comment dropdown-item d-flex justify-content-around align-items-center fs-7"
+                                                                        href="#">
                                                                         Delete Comment</a>
                                                                 </li>
                                                                 <input type="hidden" name="" class="blog_id"
@@ -590,7 +292,6 @@
                                                                 <input class="comment_id" type="hidden" name=""
                                                                     value="{{comment.id}}">
                                                             </ul>
-
                                                         </div>
                                                         {% endif %}
                                                         <p class=" m-0 text-muted">{{comment.user}} |
@@ -604,18 +305,13 @@
                                                 </div>
                                                 {% endfor %}
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- end -->
                         </div>
                     </div>
                 </div>
-
-
                 {% endfor%}
                 {% else %}
                 <h1 class="text-muted text-center mt-5">No Blog</h1>
@@ -623,76 +319,10 @@
 
             </div>
         </div>
-        <!-- ================= Chatbar ================= -->
+
+        <!-- ================= Right bar ================= -->
         <div class="col-12 col-lg-3 scrollbar h-100" style="position: fixed; top: 5%; right: 0; z-index: 4;">
-            <div class="d-none d-lg-block">
-                <!-- dp -->
-                <div class="text-center p-3 mt-4 w-100">
-                    <a href="{% url 'my-profile' %}">
-                        <div class="p-1">
-                            <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
-                                style="width: 200px; height: 200px; object-fit: cover; position: relative;" />
-
-                        </div>
-                        <h4 class="my-3">{{request.user}}</h4>
-                    </a>
-                </div>
-                <div class="row d-flex justify-content-around p-0 text-center">
-                    <div class="col-3">
-                        <h4>{{request.user.user_blog.all.count}}</h4>
-                        <h6>Posts</h6>
-                    </div>
-                    <div class="col-3 ">
-                        {% if request.user.user_profile.get_followers_count %}
-                        <h4>{{request.user.user_profile.get_followers_count}}</h4>
-                        {% else %}
-                        <h4>0</h4>
-                        {% endif %}
-                        <h6>Followers</h6>
-                    </div>
-                    <div class="col-3 ">
-                        {% if request.user.user_profile.get_following_count %}
-                        <h4 class="following_count">{{request.user.user_profile.get_following_count}}</h4>
-                        {% else %}
-                        <h4>0</h4>
-                        {% endif %}
-                        <h6>Following</h6>
-                    </div>
-                </div>
-                <div class="p-3 mt-4 mb-5">
-                    <!-- suggestions -->
-                    <h5 class="text-muted">Suggestions</h5>
-                    {% if request.user.user_profile.get_suggestions %}
-
-                    {% for user in request.user.user_profile.get_suggestions %}
-                    <!-- s 1 -->
-                    <li class="dropdown-item my-2 d-flex justify-content-between">
-                        <!-- img -->
-                        <a href="{% url 'other-profile' user.id %}" class="
-                    d-flex
-                    align-items-center
-                    text-decoration-none
-                    link-dark
-                  ">
-                            <img src="{{user.profile_pic.url}}" alt="ads"
-                                style="width: 100px; height: 100px; object-fit: cover" class="rounded me-3" />
-                            <div class="follow_container ms-3">
-                                <p class="mb-3">{{user}}</p>
-                                {% csrf_token %}
-                                <input class="follow_user_id" type="hidden" name="" value="{{user.id}}">
-                                <button class="btn btn-primary follow_btn followed{{user.id}}">Follow</button>
-                            </div>
-
-                        </a>
-                    </li>
-                    {% endfor %}
-                    {% else %}
-                    <p class="">Add <span><a href="{% url 'profile-add' %}" class="text-primary">profile</a></span> to
-                        get User Suggestions</p>
-                    {% endif %}
-
-                </div>
-            </div>
+            {% include 'includes/rightbar.html' %}
         </div>
     </div>
 </div>

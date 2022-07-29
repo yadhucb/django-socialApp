@@ -2,22 +2,21 @@
     style="min-height: 56px; position: fixed; top: 0; z-index: 12;">
     <div class="container">
         <div class="row align-items-center">
-            <!-- search -->
             <div class="col d-flex align-items-center">
-                <!-- logo -->
+                <!--========= logo ==========-->
                 <a href="{% url 'home' %}" class="logo" style="color: rgb(10, 123, 168);">Dev-Flow</a>
-                <!-- search bar -->
+                <!-- ====== search bar ======== -->
                 <div class="input-group ms-2" type="button">
-                    <!-- mobile -->
-                    <span class="input-group-prepend d-lg-none ms-3" id="searchMenu" data-bs-toggle="dropdown"
-                        aria-expanded="false" data-bs-auto-close="outside">
+                    <!--======= mobile view ======-->
+                    <span class="d-lg-none ms-3" id="searchMenu" data-bs-toggle="dropdown" aria-expanded="false"
+                        data-bs-auto-close="outside">
                         <div class="input-group-text bg-gray border-0 rounded-circle" style="min-height: 40px">
                             <i class="fas fa-search text-muted"></i>
                         </div>
                     </span>
                     <ul class="dropdown-menu overflow-auto border-0 shadow p-3 d-lg-none" style="width: 400px;"
                         aria-labelledby="searchMenu">
-                        <!-- search input -->
+                        <!-- ======= search input ========-->
                         <li class="" role="alert">
                             <form class="d-flex" action="{% url 'search-blogs' %}">
                                 <input name="search-input" style="min-height: 40px; min-width: 230px" type="text"
@@ -28,8 +27,8 @@
                             </form>
                         </li>
                     </ul>
-                    <!-- desktop -->
-                    <span class="input-group-prepend d-none d-lg-block">
+                    <!--====== desktop view ==========-->
+                    <span class="d-none d-lg-block">
                         <div>
                             <form class="d-flex" action="{% url 'search-blogs' %}">
                                 <input name="search-input" style="min-height: 40px; min-width: 230px" type="text"
@@ -42,26 +41,21 @@
                     </span>
                 </div>
             </div>
-            <!-- nav -->
             <div class=" col d-none d-xl-flex justify-content-center">
-                <!-- home -->
-                <a href="{% url 'home' %}" class="mx-4 nav__btn nav__btn-active">
+                <!--======== home icon======-->
+                <a href="{% url 'home' %}" class="mx-4">
                     <button type="button" class="btn px-4">
                         <i class="fas fa-home text-muted fs-4"></i>
                     </button>
                 </a>
             </div>
 
-            <!-- menus -->
             <div class="col d-flex align-items-center justify-content-end">
-
-                <!-- group -->
-                <div class="mx-lg-4 nav__btn suggestion_contaner">
-                    <button type="button" class="btn px-4" data-bs-toggle="modal" data-bs-target="#suggestion">
-                        <i type="button" class="position-relative fas fa-users text-muted fs-4">
-
-                        </i>
-                    </button>
+                <!--======= suggestions =========-->
+                <div class="mx-lg-4 suggestion_contaner">
+                    <div type="button" class="px-4" data-bs-toggle="modal" data-bs-target="#suggestion">
+                        <i type="button" class="position-relative fas fa-users text-muted fs-4"></i>
+                    </div>
                     <!-- create modal -->
                     <div class="modal fade mt-5" id="suggestion" tabindex="-1" aria-labelledby="suggestionLabel"
                         aria-hidden="true" data-bs-backdrop="false">
@@ -78,19 +72,12 @@
                                 <!-- body -->
                                 <div class="modal-body">
                                     <div class="p-3 mt-4 mb-5">
-                                        <!-- suggestions -->
 
                                         {% if request.user.user_profile.get_suggestions %}
                                         {% for user in request.user.user_profile.get_suggestions %}
-                                        <!-- s 1 -->
-                                        <li class="dropdown-item my-2 d-flex justify-content-between">
-                                            <!-- img -->
-                                            <a href="{% url 'other-profile' user.id %}" class="
-                                        d-flex
-                                        align-items-center
-                                        text-decoration-none
-                                        link-dark
-                                      ">
+                                        <li class="dropdown-item my-3 d-flex justify-content-between">
+                                            <a href="{% url 'other-profile' user.id %}"
+                                                class="d-flex align-items-center text-decoration-none link-dark">
                                                 <img src="{{user.profile_pic.url}}" alt="ads"
                                                     style="width: 100px; height: 100px; object-fit: cover"
                                                     class="rounded me-3" />
@@ -102,30 +89,27 @@
                                                     <button
                                                         class="btn btn-primary follow_btn followed{{user.id}}">Follow</button>
                                                 </div>
-
                                             </a>
                                         </li>
                                         {% endfor %}
                                         {% else %}
                                         <h4 class="text-muted text-center">No suggestions</h4>
                                         {% endif %}
+
                                     </div>
-
-                                    <!-- end -->
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- group -->
-                <div class=" nav__btn languages_contaner">
-                    <button type="button" class="btn px-lg-4" data-bs-toggle="modal" data-bs-target="#languages">
+                <!--=========== Programming Languages ========-->
+                <div class="mx-lg-4 languages_contaner">
+                    <div type="button" class="px-lg-4" data-bs-toggle="modal" data-bs-target="#languages">
                         <i type="button" class="position-relative fas fa-filter text-muted fs-4">
 
                         </i>
-                    </button>
+                    </div>
                     <!-- create modal -->
                     <div class="modal fade mt-5" id="languages" tabindex="-1" aria-labelledby="languagesLabel"
                         aria-hidden="true" data-bs-backdrop="false">
@@ -142,18 +126,11 @@
                                 <!-- body -->
                                 <div class="modal-body">
                                     <div class="p-3">
-                                        <!-- languages -->
-
                                         <ul class="navbar-nav ms-3 d-flex flex-column">
-                                            <!-- top -->
-
                                             <!-- all-->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'home'  %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'home'  %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://miro.medium.com/max/800/1*wcEYa9AjnMZxXAau2iuhYw.png"
                                                             alt="from fb" class="rounded-circle"
@@ -167,11 +144,8 @@
                                             </li>
                                             <!-- python-->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'python' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'python' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://sonhasoftware.com/wp-content/uploads/2021/07/python.png"
                                                             alt="from fb" class="rounded-circle"
@@ -184,11 +158,8 @@
                                             </li>
                                             <!-- java -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'java' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'java' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
                                                             alt="from fb" class="rounded-circle"
@@ -201,11 +172,8 @@
                                             </li>
                                             <!-- ruby -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'ruby' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'ruby' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://w7.pngwing.com/pngs/535/618/png-transparent-ruby-on-rails-computer-programming-programming-language-ruby-angle-rectangle-logo.png"
                                                             alt="from fb" class="rounded-circle"
@@ -218,11 +186,8 @@
                                             </li>
                                             <!-- html -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'html' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'html' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png"
                                                             alt="from fb" class="rounded-circle"
@@ -235,11 +200,8 @@
                                             </li>
                                             <!-- javascript -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'javascript' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'javascript' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://img.favpng.com/4/8/18/javascript-programmer-programming-language-computer-programming-png-favpng-NuubdcGBYPwiVGTWJyGLVJrTP.jpg"
                                                             alt="from fb" class="rounded-circle"
@@ -252,11 +214,8 @@
                                             </li>
                                             <!-- c -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'c' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'c' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/695px-C_Programming_Language.svg.png"
                                                             alt="from fb" class="rounded-circle"
@@ -269,11 +228,8 @@
                                             </li>
                                             <!-- c++ -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'c++' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'c++' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png"
                                                             alt="from fb" class="rounded-circle"
@@ -286,11 +242,8 @@
                                             </li>
                                             <!-- c# -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'c#' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'c#' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://geeks4learning-elearning.com/pluginfile.php/10043/course/section/2489/C%23.png"
                                                             alt="from fb" class="rounded-circle"
@@ -303,11 +256,8 @@
                                             </li>
                                             <!-- php -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'php' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'php' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://www.codeserk.es/media/md/6ea41ce165a1e149c6d3eaec5f14a9f2.png"
                                                             alt="from fb" class="rounded-circle"
@@ -320,11 +270,8 @@
                                             </li>
                                             <!-- sql -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'sql' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'sql' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://img.favpng.com/16/0/21/sql-server-logo-png-favpng-pXyDxFrAFhWQUeLq6SrgeND1g.jpg"
                                                             alt="from fb" class="rounded-circle"
@@ -337,11 +284,8 @@
                                             </li>
                                             <!-- swift -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'swift' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'swift' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://e7.pngegg.com/pngimages/262/885/png-clipart-swift-programming-language-apple-natural-ecological-food-logo-templates-angle-orange.png"
                                                             alt="from fb" class="rounded-circle"
@@ -354,11 +298,8 @@
                                             </li>
                                             <!-- others -->
                                             <li class="dropdown-item p-1 rounded">
-                                                <a href="{% url 'language' 'others' %}" class="
-                                            d-flex
-                                            align-items-center
-                                            text-decoration-none text-dark
-                                          ">
+                                                <a href="{% url 'language' 'others' %}"
+                                                    class="d-flex align-items-center text-decoration-none text-dark">
                                                     <div class="p-2">
                                                         <img src="https://icon-library.com/images/others-icon/others-icon-13.jpg"
                                                             alt="from fb" class="rounded-circle"
@@ -369,11 +310,8 @@
                                                     </div>
                                                 </a>
                                             </li>
-
-
                                         </ul>
                                     </div>
-
                                     <!-- end -->
                                 </div>
 
@@ -382,63 +320,47 @@
                     </div>
                 </div>
 
-
-                <!-- avatar -->
-                <div class="align-items-center justify-content-center d-none d-xl-flex">
+                <!--============ profile ===========-->
+                <div class="align-items-center justify-content-center d-none d-lg-flex" type="button" id="secondMenu"
+                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                     <img src="{{request.user.profile_pic.url}}" class="rounded-circle me-2" alt="avatar"
                         style="width: 38px; height: 38px; object-fit: cover" />
                     <p class="m-0">{{request.user}}</p>
                 </div>
-
-                <div class="
-                rounded-circle
-                p-1
-                bg-gray
-                d-flex
-                align-items-center
-                justify-content-center
-                mx-2
-              " style="width: 38px; height: 38px" type="button" id="secondMenu" data-bs-toggle="dropdown"
+                <div class="rounded-circle p-1 bg-gray d-flex align-items-center justify-content-center mx-2"
+                    style="width: 38px; height: 38px" type="button" id="secondMenu" data-bs-toggle="dropdown"
                     aria-expanded="false" data-bs-auto-close="outside">
-                    <i class="fas fa-caret-down"></i>
+                    <i class="fas fa-caret-down d-none d-lg-flex"></i>
+                    <img src="{{request.user.profile_pic.url}}" class="rounded-circle me-2 d-lg-none" alt="avatar"
+                        style="width: 38px; height: 38px; object-fit: cover" />
                 </div>
-                <!-- secondary menu dd -->
-
                 <ul class="dropdown-menu border-0 shadow p-3" aria-labelledby="secondMenu" style="width: 23em">
                     <!-- avatar -->
-                    <li class="dropdown-item p-1 rounded d-flex" type="button">
-                        <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
-                            style="width: 45px; height: 45px; object-fit: cover" />
-                        <a href="{% url 'my-profile' %}">
-                            <p class="m-0">{{request.user}}</p>
-                            <p class="m-0 text-muted">See your profile</p>
-                        </a>
-                    </li>
+                    <a href="{% url 'my-profile' %}">
+                        <li class="dropdown-item p-1 rounded d-flex" type="button">
+                            <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
+                                style="width: 45px; height: 45px; object-fit: cover" />
+                            <div>
+                                <p class="m-0">{{request.user}}</p>
+                                <p class="m-0 text-muted">See your profile</p>
+                            </div>
+                        </li>
+                    </a>
                     <hr />
-
                     <!-- options -->
-
                     <li class="dropdown-item p-1 my-3 rounded" type="button">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="{% url 'signout' %}" class="d-flex text-decoration-none text-dark">
                                     <i class="fas fa-user bg-gray p-2 rounded-circle"></i>
-                                    <div class="
-                          ms-3
-                          d-flex
-                          justify-content-between
-                          align-items-center
-                          w-100
-                        ">
+                                    <div class="ms-3 d-flex justify-content-between align-items-center w-100">
                                         <p class="m-0">Signout</p>
                                     </div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-
                 </ul>
-                <!-- end -->
             </div>
         </div>
     </div>

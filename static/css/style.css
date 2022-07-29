@@ -45,15 +45,6 @@ button {
     padding: 5px 10px;
 }
 
-button.liked {
-    color: #0571ed;
-}
-
-button.liked i {
-    animation: anim 0.5s ease-in-out;
-    -webkit-animation: anim 0.5s ease-in-out;
-}
-
 @keyframes anim {
     100% {
         transform: rotate(-360deg) scale(2.3);

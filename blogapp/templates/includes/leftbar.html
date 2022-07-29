@@ -1,0 +1,174 @@
+<div class="d-none d-lg-block h-100 scrollbar mb-5" style="position: fixed; top: 0; width: 15%;">
+    <ul class="navbar-nav mt-4 ms-3 d-flex flex-column mb-5"></ul>
+    <!-- top -->
+    <!-- avatar -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'my-profile' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="{{request.user.profile_pic.url}}" alt="avatar" class="rounded-circle me-2"
+                    style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">{{request.user}}</p>
+            </div>
+        </a>
+    </li>
+    <!-- all-->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'home'  %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://miro.medium.com/max/800/1*wcEYa9AjnMZxXAau2iuhYw.png" alt="from fb"
+                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">All</p>
+            </div>
+        </a>
+    </li>
+    </li>
+    <!-- python-->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'python' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://sonhasoftware.com/wp-content/uploads/2021/07/python.png" alt="from fb"
+                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">Python</p>
+            </div>
+        </a>
+    </li>
+    <!-- java -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'java' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">Java</p>
+            </div>
+        </a>
+    </li>
+    <!-- ruby -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'ruby' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://w7.pngwing.com/pngs/535/618/png-transparent-ruby-on-rails-computer-programming-programming-language-ruby-angle-rectangle-logo.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">Ruby</p>
+            </div>
+        </a>
+    </li>
+    <!-- html -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'html' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">HTML</p>
+            </div>
+        </a>
+    </li>
+    <!-- javascript -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'javascript' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://img.favpng.com/4/8/18/javascript-programmer-programming-language-computer-programming-png-favpng-NuubdcGBYPwiVGTWJyGLVJrTP.jpg"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">JavaScript</p>
+            </div>
+        </a>
+    </li>
+    <!-- c -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'c' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/695px-C_Programming_Language.svg.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">C</p>
+            </div>
+        </a>
+    </li>
+    <!-- c++ -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'c++' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">C++</p>
+            </div>
+        </a>
+    </li>
+    <!-- c# -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'c#' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://geeks4learning-elearning.com/pluginfile.php/10043/course/section/2489/C%23.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">C#</p>
+            </div>
+        </a>
+    </li>
+    <!-- php -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'php' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://www.codeserk.es/media/md/6ea41ce165a1e149c6d3eaec5f14a9f2.png" alt="from fb"
+                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">PHP</p>
+            </div>
+        </a>
+    </li>
+    <!-- sql -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'sql' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://img.favpng.com/16/0/21/sql-server-logo-png-favpng-pXyDxFrAFhWQUeLq6SrgeND1g.jpg"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">SQL</p>
+            </div>
+        </a>
+    </li>
+    <!-- swift -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'swift' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://e7.pngegg.com/pngimages/262/885/png-clipart-swift-programming-language-apple-natural-ecological-food-logo-templates-angle-orange.png"
+                    alt="from fb" class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">Swift</p>
+            </div>
+        </a>
+    </li>
+    <!-- others -->
+    <li class="dropdown-item p-1 rounded">
+        <a href="{% url 'language' 'others' %}" class="d-flex align-items-center text-decoration-none text-dark">
+            <div class="p-2">
+                <img src="https://icon-library.com/images/others-icon/others-icon-13.jpg" alt="from fb"
+                    class="rounded-circle" style="width: 38px; height: 38px; object-fit: cover" />
+            </div>
+            <div>
+                <p class="m-0">Others</p>
+            </div>
+        </a>
+    </li>
+    </ul>
+</div>
