@@ -1,4 +1,3 @@
-from urllib import request
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView
 from django.views import View
@@ -13,6 +12,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+
+#======= home page view =========
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class HomeView(CreateView):
     model=Blogs
@@ -23,7 +24,6 @@ class HomeView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         self.object = form.save()
-        messages.success(self.request,'post updated')
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -35,6 +35,7 @@ class HomeView(CreateView):
         
         return context
 
+#=========== blog edit ===========
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class BlogEditView(View):
 
@@ -55,6 +56,7 @@ class BlogEditView(View):
             form.save()
             return redirect('home')
 
+#========== blog delete ==========
 @login_required(login_url='signin')
 def blogDeleteView(request, *args, **kwargs):
     blog_id = kwargs.get('id')
@@ -72,6 +74,7 @@ def searchBlogView(request):
         Q(related_language__icontains = search_input)).order_by('-updated_at')
     return render(request, 'search.html', {'blogs' : blogs})
 
+# ========== blog filter ===========
 @login_required(login_url='signin')
 def filterByLanguageView(request, *args, **kwargs):
     language = kwargs.get('slug')
@@ -83,6 +86,7 @@ def filterByLanguageView(request, *args, **kwargs):
     }
     return render(request, 'home.html', context)
 
+# =========== add comment ===========
 @login_required(login_url='signin')
 def addcommentView(request,*args,**kwargs):
     if request.method =='POST':
@@ -94,14 +98,13 @@ def addcommentView(request,*args,**kwargs):
             blog = blog,
             user = user,
             comment = comment)
-        messages.success(request,'comment added successfully')
         return JsonResponse({'suucess' : 'comment added'})
 
+# ========== edit comment ==========
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class CommentEditView(View):
 
     comment = None
-
     def get(self, request):
         comment_id = request.GET.get('comment_id')
         global comment
@@ -117,17 +120,17 @@ class CommentEditView(View):
         comment_input = request.POST.get('comment')
         instance.comment = comment_input
         instance.save()
-        messages.success(request,'comment edited successfully')
         return JsonResponse({'suucess' : 'comment edited'})
 
+# ========= delete comment ===========
 @login_required(login_url='signin')
 def deletecommentView(request,*args,**kwargs):
     comment_id = request.GET.get('comment_id')
     comment = Comments.objects.get(id = comment_id)
     comment.delete()
-    messages.success(request,'comment deleted successfully')
     return JsonResponse({'suucess' : 'comment deleted'})
 
+# ============ like blog ============
 @login_required(login_url='signin')
 def likeView(request):
     if request.method == 'POST':
@@ -136,6 +139,7 @@ def likeView(request):
         blog.liked_by.add(request.user)
         return JsonResponse({'suucess' : 'liked'})
 
+# ========== unlike blog ===========
 @login_required(login_url='signin')
 def unlikeView(request):
     if request.method == 'POST':
@@ -144,6 +148,7 @@ def unlikeView(request):
         blog.liked_by.remove(request.user)
         return JsonResponse({'suucess' : 'unliked'})
 
+# ========= remove followers ===========
 @login_required(login_url='signin')
 def removeFollowerView(request):
     if request.method == 'POST':
@@ -159,21 +164,7 @@ def removeFollowerView(request):
 
         return JsonResponse({'suucess' : 'followed'})
 
-@login_required(login_url='signin')
-def unfollowView(request):
-    if request.method == 'POST':
-        following_user_id = request.POST.get('following_user_id')
-        following_user = User.objects.get(id=following_user_id)
-        following_user_profile = UserProfile.objects.get(user = following_user)
-        following_user_profile.followers.remove(request.user)
-        following_user_profile.save()
-
-        unfollow_request_user_profile = request.user.user_profile
-        unfollow_request_user_profile.following.remove(following_user)
-        unfollow_request_user_profile.save()
-
-        return JsonResponse({'suucess' : 'followed'})
-
+# ========= follow users ========
 @login_required(login_url='signin')
 def followView(request):
     if request.method == 'POST':
@@ -189,18 +180,33 @@ def followView(request):
 
         return JsonResponse({'suucess' : 'followed'})
 
+# ======== unfollow users =========
+@login_required(login_url='signin')
+def unfollowView(request):
+    if request.method == 'POST':
+        following_user_id = request.POST.get('following_user_id')
+        following_user = User.objects.get(id=following_user_id)
+        following_user_profile = UserProfile.objects.get(user = following_user)
+        following_user_profile.followers.remove(request.user)
+        following_user_profile.save()
 
+        unfollow_request_user_profile = request.user.user_profile
+        unfollow_request_user_profile.following.remove(following_user)
+        unfollow_request_user_profile.save()
+
+        return JsonResponse({'suucess' : 'followed'})
+
+# ======= user registration =========
 class SignUpView(CreateView):
     form_class=UserRegistrationForm
     template_name = 'signup.html'
     model=User
     success_url = reverse_lazy('signin')
 
-
+# =========user login ==========
 class LoginView(FormView):
     form_class = LoginForm
     template_name='signin.html'
-    
     
     def post(self,request,*args,**kwargs):
         username = request.POST.get('username')
@@ -211,13 +217,16 @@ class LoginView(FormView):
             login(request, user)
             return redirect('home')
         else:
+            messages.error(request, 'Please enter correct Username and Password!')
             return render(request, 'signin.html', {'form' : self.form_class})
 
+# ========= user logout ============
 @login_required(login_url='signin')
 def signoutView(request,*args,**kwargs):
     logout(request)
     return redirect('signin')
 
+# ========= user profile ============
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class MyProfileView(View):
 
@@ -231,7 +240,7 @@ class MyProfileView(View):
             print(request.POST)
             return redirect('my-profile')
 
- 
+# ========== user profile add view =========
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class ProfileAddView(CreateView):
    
@@ -243,9 +252,9 @@ class ProfileAddView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         self.object = form.save()
-        messages.success(self.request,'post updated')
         return super().form_valid(form)
 
+# ========== user profile edit =========
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class ProfileEditView(View):
     def get(self, request):
@@ -260,6 +269,7 @@ class ProfileEditView(View):
             form.save()
             return render(request, 'my_profile.html')
 
+# ======= other user profile ==========
 @login_required(login_url='signin')
 def otherProfileView(request, *args, **kwargs):
     user_id = kwargs.get('user_id')

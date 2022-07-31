@@ -21,7 +21,7 @@
     <!-- Login -->
     <div class="container mt-5 pt-5 d-flex flex-column flex-lg-row justify-content-evenly">
         <!-- heading -->
-        <div class="text-center text-lg-start mt-0 pt-0 mt-lg-5 pt-lg-5">
+        <div class="text-center text-lg-start mt-0 pt-0 mt-lg-5 pt-lg-5 login_bg">
             <h1 class="text-primary fw-bold fs-0">Devflow</h1>
             <p class="w-75 mx-auto fs-4 mx-lg-0">Be the Flow.
             </p>
@@ -30,6 +30,11 @@
         <div style="max-width: 28rem; width: 100%">
             <!-- login form -->
             <div class="bg-white shadow rounded p-3 input-group-lg">
+                {% if messages %}
+                {% for message in messages %}
+                <strong class="text-danger text-center">{{message}}</strong>
+                {% endfor %}
+                {% endif %}
                 <form action="" method="post">
                     {% csrf_token %}
                     <input type="text" name="username" class="form-control my-3" placeholder="Username" required

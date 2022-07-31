@@ -7,56 +7,6 @@ a {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
-.accordion-body {
-    padding: 0;
-}
-
-
-
-
-/* comment */
-
-
-.post__comment .accordion-button::after {
-    margin-left: 0 !important;
-    display: none !important;
-}
-
-.post__comment .accordion-button:hover {
-    background: transparent !important;
-    border-color: transparent !important;
-}
-
-.post__comment .accordion-button:not(.collapsed) {
-    background: transparent !important;
-}
-
-.post__comment .accordion-button:not(.collapsed) {
-    box-shadow: none !important;
-}
-
-button {
-    background: #fff;
-    border: unset;
-    outline: 0;
-    font-size: 18px;
-    cursor: pointer;
-    color: #65676b;
-    padding: 5px 10px;
-}
-
-@keyframes anim {
-    100% {
-        transform: rotate(-360deg) scale(2.3);
-        -webkit-transform: rotate(-360deg) scale(2.3);
-        -moz-transform: rotate(-360deg) scale(2.3);
-        -ms-transform: rotate(-360deg) scale(2.3);
-        -o-transform: rotate(-360deg) scale(2.3);
-        filter: blur(0.5px);
-        -webkit-filter: blur(0.5px);
-    }
-}
-
 .scrollbar {
     overflow: auto !important;
     overflow-x: hidden !important;
@@ -84,6 +34,29 @@ html {
     background-color: var(--thumbBG);
     border-radius: 6px;
     border: 3px solid var(--scrollbarBG);
+}
+
+.accordion-body {
+    padding: 0;
+}
+
+
+.post__comment .accordion-button::after {
+    margin-left: 0 !important;
+    display: none !important;
+}
+
+.post__comment .accordion-button:hover {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.post__comment .accordion-button:not(.collapsed) {
+    background: transparent !important;
+}
+
+.post__comment .accordion-button:not(.collapsed) {
+    box-shadow: none !important;
 }
 
 @media(max-width:767px) {

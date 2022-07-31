@@ -25,7 +25,7 @@
                 {% if request.user.user_profile.get_following_count %}
                 <h4 class="refresh_following">{{request.user.user_profile.get_following_count}}</h4>
                 {% else %}
-                <h4>0</h4>
+                <h4 class="refresh_following">0</h4>
                 {% endif %}
                 <h6>Following</h6>
             </div>
@@ -34,7 +34,7 @@
     <div class="p-3 mt-4 mb-5">
         <!-- suggestions -->
         <h5 class="text-muted">Suggestions</h5>
-
+        {% if request.user.user_profile %}
         {% if request.user.user_profile.get_suggestions %}
         {% for user in request.user.user_profile.get_suggestions %}
         <!-- s 1 -->
@@ -53,6 +53,9 @@
             </a>
         </li>
         {% endfor %}
+        {% else %}
+        <p class="text-muted">No Suggestions</p>
+        {% endif %}
         {% else %}
         <p class="">Add <span><a href="{% url 'profile-add' %}" class="text-primary">profile</a></span> to
             get User Suggestions</p>

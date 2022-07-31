@@ -66,9 +66,9 @@
             <div class="col-3 followers_container">
                 <div data-bs-toggle="modal" data-bs-target="#followers" role="button">
                     {% if request.user.user_profile.get_followers_count %}
-                    <h4>{{request.user.user_profile.get_followers_count}}</h4>
+                    <h4 class="followers_count">{{request.user.user_profile.get_followers_count}}</h4>
                     {% else %}
-                    <h4>0</h4>
+                    <h4 class="followers_count">0</h4>
                     {% endif %}
                     <h6>Followers</h6>
                 </div>
@@ -113,11 +113,11 @@
             <!-- following -->
             <div class="col-3 refresh_following text-center">
                 <div data-bs-toggle="modal" data-bs-target="#following" role="button">
-                    <div class="following_count text-center ">
+                    <div class="text-center ">
                         {% if request.user.user_profile.get_following_count %}
-                        <h4 class="text-center">{{request.user.user_profile.get_following_count}}</h4>
+                        <h4 class="text-center following_count">{{request.user.user_profile.get_following_count}}</h4>
                         {% else %}
-                        <h4>0</h4>
+                        <h4 class="following_count">0</h4>
                         {% endif %}
                         <h6>Following</h6>
                     </div>
